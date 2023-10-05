@@ -18,9 +18,9 @@
                     <TextBlock Foreground="RosyBrown" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontFamily="Arial">Please Rate It</TextBlock>
                     <local:Rating x:Name="starsRating" Height="60" Width="100" VerticalAlignment="Center" Margin="0,80,0,79" />
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Horizontal">
-                     <TextBlock x:Name="cookTimeTB" Text="Cook Time: " Margin="20,40,0,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                    <TextBlock x:Name="cookTimeTB" Text="Cook Time: " Margin="20,40,0,0" FontWeight="Bold" FontSize="16"></TextBlock>
                     <TextBlock x:Name="cookTimeValueTB" Text="{Binding Cook_Time_Minutes}" Margin="20,40,0,0" FontSize="16" ></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -71,6 +71,22 @@
                 <TextBox Name="noteTextBox" Width="200" Margin="10"  />
                 <Button Content="Add Note" Width="80" Height="30" Margin="10" Click="AddNote_Click" />
 
+                <Button x:Name="BrowseButton" Click="BrowseButton_Click" Content="browse image" Height="30" Width="80"></Button>
+                <Button x:Name="UploadButton" Click="UploadButton_Click" Content="upload image" Height="30" Width="80"></Button>
+                <Image x:Name="recipeImage" Width="200" Height="200"/>
+                <ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Source="{Binding recipeDetails.Images}"></Image>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <Button x:Name="moedBtn" Click="moedBtn_Click" Content="add holidays to recipe"
+                        ></Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

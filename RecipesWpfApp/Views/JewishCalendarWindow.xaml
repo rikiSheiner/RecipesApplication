@@ -1,0 +1,21 @@
+﻿<Window x:Class="RecipesWpfApp.Views.JewishCalendarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecipesWpfApp.Views"
+        mc:Ignorable="d"
+        Title="JewishCalendarWindow" Height="450" Width="800">
+    <Grid>
+
+        <TextBlock Text="enter moed:" Margin="0,0,0,355"></TextBlock>
+        <TextBox x:Name="moedTB" Margin="0,84,0,285"></TextBox>
+        <Button x:Name="searchBtn" Content="search" Margin="0,154,0,217" Click="searchBtn_Click"></Button>
+
+        <ScrollViewer Margin="0,222,0,0">
+
+            <TextBlock x:Name="searchResultTB" Margin="0,259,0,10"></TextBlock>
+
+        </ScrollViewer>
+    </Grid>
+</Window>

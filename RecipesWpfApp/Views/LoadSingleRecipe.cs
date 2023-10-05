@@ -62,8 +62,8 @@ namespace RecipesWpfApp.Views
                 int position = 0;
                 string display_text;
 
-                recipeDetails.Ingredients = new List<Ingredient>();
-                recipeDetails.Instructions = new List<Instruction>();
+                //recipeDetails.Ingredients = new List<Ingredient>();
+                //recipeDetails.Instructions = new List<Instruction>();
 
                 foreach (var item in jsonObject["sections"][0]["components"])
                 {

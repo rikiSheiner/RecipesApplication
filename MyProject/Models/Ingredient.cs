@@ -9,11 +9,11 @@ namespace MyProject.Models
         public int Index { get; set; }
         // the id of the recipe to which the ingredient belongs
         [ForeignKey("Recipe")]
-        public /*Guid*/int RecipeId { get; set; }
+        public int RecipeId { get; set; }
         // the ingredient name and amount
         public string Name { get; set; }
 
-        public Ingredient(int index, /*Guid*/int recipeId, string name)
+        public Ingredient(int index, int recipeId, string name)
         {
             Index = index;
             RecipeId = recipeId;

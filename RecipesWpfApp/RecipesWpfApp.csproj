@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,11 +61,14 @@
     <Compile Include="Converters\BoolToBrushConverter.cs" />
     <Compile Include="Converters\RatingToBoolConverter .cs" />
     <Compile Include="Models\ApiModel.cs" />
+    <Compile Include="Models\FoodImage.cs" />
     <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\Instruction.cs" />
+    <Compile Include="Models\JewishHoliday.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\RecipeDetails.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\RecipeInHoliday.cs" />
     <Compile Include="Models\RecipeList.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="StepNumberConverter.cs" />
@@ -73,6 +77,12 @@
     </Compile>
     <Compile Include="ViewModels\RecipeDetailsViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
+    <Compile Include="Views\AddHolidayToRecipeWindow.xaml.cs">
+      <DependentUpon>AddHolidayToRecipeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JewishCalendarWindow.xaml.cs">
+      <DependentUpon>JewishCalendarWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoadSingleRecipe.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -91,6 +101,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControls\Rating.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddHolidayToRecipeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JewishCalendarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +157,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack">
+      <Version>1.11.54</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client">
+      <Version>5.2.9</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Http">
+      <Version>2.2.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Http.Features">
       <Version>5.0.17</Version>
     </PackageReference>

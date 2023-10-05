@@ -148,20 +148,58 @@ namespace RecipesWpfApp.Models
             }
         }
 
-        private IFormFile _imageFile;
-        public IFormFile ImageFile
+        /*private List<JewishHoliday> _jewishHolidays;
+        public List<JewishHoliday> JewishHolidays
         {
-            get { return _imageFile; }
+            get { return _jewishHolidays; }
+            set
+            {
+                if (_jewishHolidays != value)
+                {
+                    _jewishHolidays = value;
+                    OnPropertyChanged("JewishHolidays");
+                }
+            }
+        }*/
+        /*
+        private List<IFormFile> _images;
+        public List<IFormFile> Images
+        {
+            get { return _images; }
 
             set
             {
-                if (_imageFile != value)
+                if (_images != value)
                 {
-                    _imageFile = value;
-                    OnPropertyChanged("ImageFile");
+                    _images = value;
+                    OnPropertyChanged(nameof(Images));
                 }
             }
         }
+        */
 
+        /*private IFormFile _images;
+        public IFormFile Images
+        {
+            get { return _images; }
+
+            set
+            {
+                if (_images != value)
+                {
+                    _images = value;
+                    OnPropertyChanged("Images");
+                }
+            }
+        }*/
+
+        public RecipeDetails()
+        {
+            _notes = new List<Note>();
+            //_images = new List<IFormFile>();
+            _instructions = new List<Instruction>();
+            _ingredients = new List<Ingredient>();
+            //_jewishHolidays = new List<JewishHoliday> ();
+        }
     }
 }

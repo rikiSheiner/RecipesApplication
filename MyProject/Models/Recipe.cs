@@ -7,7 +7,7 @@ namespace MyProject.Models
     public class Recipe
     {
         [Key]
-        public /*Guid*/int Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public List<Ingredient> Ingredients { get; set; }
@@ -16,5 +16,10 @@ namespace MyProject.Models
         public int Num_Servings { get; set; }
         public int Ranking { get; set; }
         public List<Note> Notes { get; set; }
+        //public List<FoodImage> FoodImage { get; set; }
+        //public List<JewishHoliday> UsedInHolidays { get; set; }
+
+        
+
     }
 }

@@ -37,8 +37,8 @@ namespace MyProject
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
 
             app.Run();
         }

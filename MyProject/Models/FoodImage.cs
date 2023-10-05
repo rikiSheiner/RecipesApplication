@@ -1,16 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyProject.Models
 {
     public class FoodImage
     {
+        [Key]
         public int ImageId { get; set; }
-        public string ImagePath { get; set; } = string.Empty;
+        [Column(TypeName ="nvarchar(50)")]
+        public string Title { get; set; }
+        [Column(TypeName ="nvrachar(100)")]
+        public string ImageName { get; set; }
         [ForeignKey("Recipe")]
         public int RecipeId { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-
         [NotMapped]
-        public IFormFile FormFile { get; set; }
+        //[DisplayName("Upload Image")]
+        public IFormFile ImageFile { get; set; }
     }
 }
