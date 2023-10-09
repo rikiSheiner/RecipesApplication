@@ -1,0 +1,39 @@
+﻿<Window x:Class="RecipesWpfApp.Views.RecipesBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecipesWpfApp.Views"
+        mc:Ignorable="d"
+        Title="ViewRecipesBookWindow" Height="450" Width="800">
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBox x:Name="SearchTextBox" Width="200" />
+                    <Button Content="Search" Background="MediumPurple" Foreground="White" Click="SearchButton_Click" />
+                </StackPanel>
+
+                <DataGrid x:Name="ItemsDataGrid" AutoGenerateColumns="False" Background="Transparent" RowBackground="Transparent"
+                          Foreground="BlueViolet" Margin="5"
+                          HorizontalGridLinesBrush="MediumPurple" VerticalGridLinesBrush="MediumPurple" FontWeight="Bold"
+                          SelectionChanged="ItemsDataGrid_SelectionChanged">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Margin" Value="0,5"/>
+                        </Style>
+
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

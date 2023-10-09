@@ -5,98 +5,86 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace MyProject.Controllers
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
-    //[Route("api/JewishHolidayController")]
-    //[SwaggerTag("JewishHolidayController")]
-    //public class JewishHolidayController : Controller
-    //{
-    //    private readonly RecipesDbContext _context;
+    [ApiController]
+    [Route("api/[controller]")]
+    public class JewishHolidayController : ControllerBase
+    {
+        private readonly RecipesDbContext _context;
 
-    //    public JewishHolidayController(RecipesDbContext context)
-    //    {
-    //        _context = context;
-    //    }
-
-    //    public IActionResult Index()
-    //    {
-    //        return View();
-    //    }
-
-    //    [HttpGet]
-    //    [Route("holiday")]
-    //    public async Task<ActionResult<IEnumerable<JewishHoliday>>> GetHolidays()
-    //    {
-    //        return await _context.jewishHoliday.ToListAsync();
-    //    }
+        public JewishHolidayController(RecipesDbContext context)
+        {
+            _context = context;
+        }
 
 
-    //    [HttpPut("{id}")]
-    //    public async Task<IActionResult> PutRecipe(int id, JewishHoliday jewishHoliday)
-    //    {
-    //        if (id != jewishHoliday.HolidayId)
-    //        {
-    //            return BadRequest();
-    //        }
-    //        _context.jewishHoliday.Update(jewishHoliday);
-
-    //        try
-    //        {
-    //            await _context.SaveChangesAsync();
-    //        }
-    //        catch (DbUpdateConcurrencyException)
-    //        {
-
-    //        }
-
-    //        return NoContent();
-    //    }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<JewishHoliday>>> GetHolidays()
+        {
+            return await _context.jewishHoliday.ToListAsync();
+        }
 
 
-    //    [HttpGet("{id}")]
-    //    //[Route("get/one")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutRecipe(int id, JewishHoliday jewishHoliday)
+        {
+            if (id != jewishHoliday.HolidayId)
+            {
+                return BadRequest();
+            }
+            _context.jewishHoliday.Update(jewishHoliday);
 
-    //    public async Task<ActionResult<JewishHoliday>> GetHoliday(int id)
-    //    {
-    //        var holiday = await _context.jewishHoliday.FirstAsync(e => e.HolidayId == id);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
 
-    //        if (holiday == null)
-    //        {
-    //            return NotFound();
-    //        }
+            }
 
-    //        return holiday;
-    //    }
-
-
-    //    [HttpPost]
-    //    //[Route("post")]
-
-    //    public async Task<ActionResult<JewishHoliday>> PostHoliday(JewishHoliday holiday)
-    //    {
-    //        _context.jewishHoliday.Add(holiday);
-    //        await _context.SaveChangesAsync();
-
-    //        return CreatedAtAction("GetHoliday", new { id = holiday.HolidayId }, holiday);
-    //    }
-
-    //    [HttpDelete("{id}")]
-    //    //[Route("delete")]
-    //    public async Task<ActionResult<JewishHoliday>> DeleteHoliday(int id)
-    //    {
-    //        var holiday = await _context.jewishHoliday.FirstAsync(e => e.HolidayId == id);
-
-    //        if (holiday == null)
-    //        {
-    //            return NotFound();
-    //        }
-
-    //        _context.jewishHoliday.Remove(holiday);
-    //        await _context.SaveChangesAsync();
-
-    //        return holiday;
-    //    }
+            return NoContent();
+        }
 
 
-    //}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<JewishHoliday>> GetHoliday(int id)
+        {
+            var holiday = await _context.jewishHoliday.FirstAsync(e => e.HolidayId == id);
+
+            if (holiday == null)
+            {
+                return NotFound();
+            }
+
+            return holiday;
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult<JewishHoliday>> PostHoliday(JewishHoliday holiday)
+        {
+            _context.jewishHoliday.Add(holiday);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetHoliday", new { id = holiday.HolidayId }, holiday);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<JewishHoliday>> DeleteHoliday(int id)
+        {
+            var holiday = await _context.jewishHoliday.FirstAsync(e => e.HolidayId == id);
+
+            if (holiday == null)
+            {
+                return NotFound();
+            }
+
+            _context.jewishHoliday.Remove(holiday);
+            await _context.SaveChangesAsync();
+
+            return holiday;
+        }
+
+
+    }
 }

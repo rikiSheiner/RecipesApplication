@@ -56,8 +56,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddFoodImageCommand.cs" />
+    <Compile Include="Commands\AddImageCommand.cs" />
+    <Compile Include="Commands\AddJewishHolidayCommand.cs" />
+    <Compile Include="Commands\AddNoteCommand.cs" />
+    <Compile Include="Commands\AddRecipeCommand.cs" />
+    <Compile Include="Commands\AsyncCommandBase.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\DeleteRecipeCommand.cs" />
+    <Compile Include="Commands\NavigateRecipesBookCommand.cs" />
+    <Compile Include="Commands\NavigateSearchRecipeCommand.cs" />
     <Compile Include="Commands\ObservableObject.cs" />
+    <Compile Include="Commands\RateRecipeCommand.cs" />
     <Compile Include="Commands\RealyCommand.cs" />
+    <Compile Include="Commands\RemoveImageCommand.cs" />
+    <Compile Include="Commands\RemoveJewishHolidayCommand.cs" />
+    <Compile Include="Commands\RemoveNoteCommand.cs" />
+    <Compile Include="Commands\SearchRecipesCommand.cs" />
+    <Compile Include="Commands\UpdateRecipeCommand.cs" />
+    <Compile Include="Commands\UpdateRecipeDetailsCommand.cs" />
     <Compile Include="Converters\BoolToBrushConverter.cs" />
     <Compile Include="Converters\RatingToBoolConverter .cs" />
     <Compile Include="Models\ApiModel.cs" />
@@ -72,59 +89,162 @@
     <Compile Include="Models\RecipeList.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="StepNumberConverter.cs" />
+    <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="UserControls\Rating.xaml.cs">
       <DependentUpon>Rating.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\RecipeDetailsViewModel.cs" />
-    <Compile Include="ViewModels\RecipeViewModel.cs" />
-    <Compile Include="Views\AddHolidayToRecipeWindow.xaml.cs">
+    <Compile Include="ViewModels1\RecipeDetailsViewModel.cs" />
+    <Compile Include="ViewModels1\RecipeViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\IngredientsViewModel.cs" />
+    <Compile Include="ViewModels\InstructionsViewModel.cs" />
+    <Compile Include="ViewModels\JewishHolidayViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\NotesViewModel.cs" />
+    <Compile Include="ViewModels\ImagesViewModel.cs" />
+    <Compile Include="ViewModels\RecipesBookViewModel.cs" />
+    <Compile Include="ViewModels\SearchRecipeViewModel.cs" />
+    <Compile Include="ViewModels\SingleRecipeViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views1\AddHolidayToRecipeWindow.xaml.cs">
       <DependentUpon>AddHolidayToRecipeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\JewishCalendarWindow.xaml.cs">
+    <Compile Include="Views1\JewishCalendarWindow.xaml.cs">
       <DependentUpon>JewishCalendarWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoadSingleRecipe.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
+    <Compile Include="Views1\LoadSingleRecipe.cs" />
+    <Compile Include="Views1\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SearchRecipeWindow.xaml.cs">
+    <Compile Include="Views1\SearchRecipeWindow.xaml.cs">
       <DependentUpon>SearchRecipeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RecipesBookWindow.xaml.cs">
+    <Compile Include="Views1\RecipesBookWindow.xaml.cs">
       <DependentUpon>RecipesBookWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SingleRecipeWindow.xaml.cs">
+    <Compile Include="Views1\SingleRecipeWindow.xaml.cs">
       <DependentUpon>SingleRecipeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IngredientsView.xaml.cs">
+      <DependentUpon>IngredientsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InstructionsView.xaml.cs">
+      <DependentUpon>InstructionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JewishHolidayView.xaml.cs">
+      <DependentUpon>JewishHolidayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotesView.xaml.cs">
+      <DependentUpon>NotesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Rating.xaml.cs">
+      <DependentUpon>Rating.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImagesView.xaml.cs">
+      <DependentUpon>ImagesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipesBookView.xaml.cs">
+      <DependentUpon>RecipesBookView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchRecipeView.xaml.cs">
+      <DependentUpon>SearchRecipeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SingleRecipeView.xaml.cs">
+      <DependentUpon>SingleRecipeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SearchRecipeWindow.xaml.cs">
+      <DependentUpon>SearchRecipeWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="UserControls\Rating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddHolidayToRecipeWindow.xaml">
+    <Page Include="Views1\AddHolidayToRecipeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\JewishCalendarWindow.xaml">
+    <Page Include="Views1\JewishCalendarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views1\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SearchRecipeWindow.xaml">
+    <Page Include="Views1\SearchRecipeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RecipesBookWindow.xaml">
+    <Page Include="Views1\RecipesBookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SingleRecipeWindow.xaml">
+    <Page Include="Views1\SingleRecipeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IngredientsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InstructionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JewishHolidayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Rating.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ImagesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipesBookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchRecipeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SingleRecipeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SearchRecipeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,6 +288,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Http.Features">
       <Version>5.0.17</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>7.0.0</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>

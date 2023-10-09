@@ -2,11 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RecipesWpfApp"
-             StartupUri="Views/MainWindow.xaml">
+             xmlns:viewModels="clr-namespace:RecipesWpfApp.ViewModels"
+             xmlns:views="clr-namespace:RecipesWpfApp.Views"
+             >
     <Application.Resources>
-        <ResourceDictionary>
-            <local:StepNumberConverter x:Key="StepNumberConverter"/>
-        </ResourceDictionary>
+
+
     </Application.Resources>
     
 </Application>

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// this class reperesents the documentation of jewish holidays 
+    /// when the recipe was in use
+    /// </summary>
     internal class RecipeInHoliday : ObservableObject
     {
         private int _holidayId;
