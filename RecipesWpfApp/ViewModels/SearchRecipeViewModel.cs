@@ -1,6 +1,10 @@
 ﻿using RecipesWpfApp.Commands;
+using RecipesWpfApp.Commands.NavigationCommands;
 using RecipesWpfApp.Models;
+using RecipesWpfApp.Stores;
+using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 using System.Windows.Input;
 
 namespace RecipesWpfApp.ViewModels
@@ -21,6 +25,34 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        private Recipe _selectedRecipe;
+        public Recipe SelectedRecipe
+        {
+            get { return _selectedRecipe; }
+            set
+            {
+                if (_selectedRecipe != value)
+                {
+                    _selectedRecipe = value;
+                    OnPropertyChanged(nameof(SelectedRecipe));
+                }
+            }
+        }
+
+        private RecipeDetails _selectedRecipeDetails;
+        public RecipeDetails SelectedRecipeDetails
+        {
+            get { return _selectedRecipeDetails; }
+            set
+            {
+                if (_selectedRecipeDetails != value)
+                {
+                    _selectedRecipeDetails = value;
+                    OnPropertyChanged(nameof(SelectedRecipeDetails));
+                }
+            }
+        }
+
         private List<Recipe> _recipes;
         public List<Recipe> Recipes
         {
@@ -35,20 +67,20 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        private readonly NavigationStore _navigationStore;
+
+        public event EventHandler SelectionChangedRecipes;
+
         public ICommand SearchRecipesCommand { get; }
-        public ICommand SelectCommand { get; }
+        public ICommand GetRecipeDetailsCommand { get; }
 
-        /*public SearchRecipeViewModel(ICommand searchCommand, ICommand selectCommand)
+        public SearchRecipeViewModel(NavigationStore navigationStore)
         {
-            _recipes = new List<Recipe>();
-            SearchRecipesCommand = searchCommand;
-            SelectCommand = selectCommand;
-        }*/
-
-        public SearchRecipeViewModel()
-        {
+            _navigationStore = navigationStore;
             _recipes = new List<Recipe>();
             SearchRecipesCommand = new SearchRecipesCommand(this);
+            GetRecipeDetailsCommand = new GetRecipeDetailsCommand(this, _navigationStore);
         }
+
     }
 }

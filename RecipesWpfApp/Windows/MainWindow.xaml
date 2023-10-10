@@ -23,9 +23,13 @@
                 <DataTemplate DataType="{x:Type TypeName=viewmodels:RecipesBookViewModel}">
                     <views:RecipesBookView/>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type TypeName=viewmodels:SingleRecipeViewModel}">
+                    <views:SingleRecipeView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type TypeName=viewmodels:NotesViewModel}">
+                    <views:NotesView/>
+                </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
-        <!--views:MainView
-            DataContext="{Binding MainViewModel}"/-->
     </Grid>
 </Window>

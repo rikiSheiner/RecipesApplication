@@ -64,8 +64,10 @@
     <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DeleteRecipeCommand.cs" />
-    <Compile Include="Commands\NavigateRecipesBookCommand.cs" />
-    <Compile Include="Commands\NavigateSearchRecipeCommand.cs" />
+    <Compile Include="Commands\GetRecipeDetailsCommand.cs" />
+    <Compile Include="Commands\LoadSavedRecipesCommand.cs" />
+    <Compile Include="Commands\NavigationCommands\NavigateRecipesBookCommand.cs" />
+    <Compile Include="Commands\NavigationCommands\NavigateSearchRecipeCommand.cs" />
     <Compile Include="Commands\ObservableObject.cs" />
     <Compile Include="Commands\RateRecipeCommand.cs" />
     <Compile Include="Commands\RealyCommand.cs" />
@@ -73,6 +75,9 @@
     <Compile Include="Commands\RemoveJewishHolidayCommand.cs" />
     <Compile Include="Commands\RemoveNoteCommand.cs" />
     <Compile Include="Commands\SearchRecipesCommand.cs" />
+    <Compile Include="Commands\SearchSavedRecipesCommand.cs" />
+    <Compile Include="Commands\NavigationCommands\NavigateToSelectedRecipeCommand.cs" />
+    <Compile Include="Commands\SetAddNoteContentCommand.cs" />
     <Compile Include="Commands\UpdateRecipeCommand.cs" />
     <Compile Include="Commands\UpdateRecipeDetailsCommand.cs" />
     <Compile Include="Converters\BoolToBrushConverter.cs" />
@@ -165,9 +170,6 @@
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SearchRecipeWindow.xaml.cs">
-      <DependentUpon>SearchRecipeWindow.xaml</DependentUpon>
-    </Compile>
     <Page Include="UserControls\Rating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,10 +246,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\SearchRecipeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -291,6 +289,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection">
       <Version>7.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.39</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>

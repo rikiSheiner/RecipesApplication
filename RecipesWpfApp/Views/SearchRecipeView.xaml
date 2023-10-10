@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:RecipesWpfApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="450">
@@ -21,7 +22,13 @@
                 <DataGrid x:Name="ItemsDataGrid" AutoGenerateColumns="False" Background="Transparent" RowBackground="Transparent"
                           Foreground="BlueViolet" Margin="5"
                           HorizontalGridLinesBrush="MediumPurple" VerticalGridLinesBrush="MediumPurple" FontWeight="Bold"
-                          ItemsSource="{Binding Recipes}">
+                          ItemsSource="{Binding Recipes}"
+                          SelectedItem="{Binding SelectedRecipe}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding GetRecipeDetailsCommand}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Setter Property="Margin" Value="0,5"/>

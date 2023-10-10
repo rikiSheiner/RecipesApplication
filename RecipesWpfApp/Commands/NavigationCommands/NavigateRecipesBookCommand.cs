@@ -6,19 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipesWpfApp.Commands
+namespace RecipesWpfApp.Commands.NavigationCommands
 {
-    internal class NavigateSearchRecipeCommand : CommandBase
+    internal class NavigateRecipesBookCommand : CommandBase
     {
         private readonly NavigationStore _navigationStore;
-        public NavigateSearchRecipeCommand(NavigationStore navigationStore)
+        public NavigateRecipesBookCommand(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
         }
 
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new SearchRecipeViewModel();
+            _navigationStore.CurrentViewModel = new RecipesBookViewModel(_navigationStore);
         }
     }
+
 }

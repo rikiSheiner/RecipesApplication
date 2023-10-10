@@ -10,6 +10,20 @@ namespace RecipesWpfApp.ViewModels
 {
     internal class SingleRecipeViewModel : ViewModelBase
     {
+        private bool _isSaved;
+        public bool IsSaved
+        {
+            get { return _isSaved; }
+            set
+            {
+                if (_isSaved != value)
+                {
+                    _isSaved = value;
+                    OnPropertyChanged(nameof(IsSaved));
+                }
+            }
+        }
+
         private RecipeDetails _recipeDetails;
         public RecipeDetails RecipeDetails
         {
@@ -24,14 +38,20 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        private NotesViewModel _notesViewModel;
+
         public ICommand RateRecipeCommand;
         public ICommand UpdateRecipeDetailsCommand;
+        public ICommand LoadSingleRecipeCommand;
 
 
-        public SingleRecipeViewModel(ICommand rateCommand,ICommand updateRecipeCommand)
+        public SingleRecipeViewModel(RecipeDetails recipeDetails, bool isSaved)
         {
-            RateRecipeCommand = rateCommand;
-            UpdateRecipeDetailsCommand = updateRecipeCommand;
+            RecipeDetails = recipeDetails;
+            IsSaved = isSaved;
+
+            _notesViewModel = new NotesViewModel(this);
+            //LoadSingleRecipeCommand = new LoadSingleRecipeCommand(this);
         }
     }
 }
