@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace RecipesWpfApp.Views
 {
     /// <summary>
-    /// Interaction logic for JewishHolidayView.xaml
+    /// Interaction logic for JewishHolidayDetailsView.xaml
     /// </summary>
-    public partial class JewishHolidayView : UserControl
+    public partial class JewishHolidayDetailsView : UserControl
     {
-        public JewishHolidayView()
+        public JewishHolidayDetailsView()
         {
             InitializeComponent();
         }
-
     }
 }

@@ -148,8 +148,8 @@ namespace RecipesWpfApp.Models
             }
         }
 
-        /*private List<JewishHoliday> _jewishHolidays;
-        public List<JewishHoliday> JewishHolidays
+        /*private List<JewishHolidayToAdd> _jewishHolidays;
+        public List<JewishHolidayToAdd> JewishHolidays
         {
             get { return _jewishHolidays; }
             set
@@ -199,7 +199,7 @@ namespace RecipesWpfApp.Models
             //_images = new List<IFormFile>();
             _instructions = new List<Instruction>();
             _ingredients = new List<Ingredient>();
-            //_jewishHolidays = new List<JewishHoliday> ();
+            //_jewishHolidays = new List<JewishHolidayToAdd> ();
         }
     }
 }

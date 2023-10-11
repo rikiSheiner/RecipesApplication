@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace RecipesWpfApp.Views
 {
     /// <summary>
-    /// Interaction logic for RecipeImageView.xaml
+    /// Interaction logic for ImagesView.xaml
     /// </summary>
-    public partial class RecipeImageView : UserControl
+    public partial class ImagesView : UserControl
     {
-        public RecipeImageView()
+        public ImagesView()
         {
             InitializeComponent();
         }

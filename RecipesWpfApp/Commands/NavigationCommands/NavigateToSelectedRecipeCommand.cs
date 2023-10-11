@@ -41,9 +41,9 @@ namespace RecipesWpfApp.Commands.NavigationCommands
             bool saved;
 
             if (bool.TryParse((string)parameter, out saved))
-                _navigationStore.CurrentViewModel = new SingleRecipeViewModel(_recipeDetails, saved);
+                _navigationStore.CurrentViewModel = new SingleRecipeViewModel(_recipeDetails, saved, _navigationStore);
             else
-                _navigationStore.CurrentViewModel = new SingleRecipeViewModel(_recipeDetails, false);
+                _navigationStore.CurrentViewModel = new SingleRecipeViewModel(_recipeDetails, false, _navigationStore);
         }
 
     }

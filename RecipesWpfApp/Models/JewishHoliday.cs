@@ -99,5 +99,10 @@ namespace RecipesWpfApp.Models
         {
             HolidayId = JewishHolidayCounter++;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="RecipesWpfApp.Views.JewishHolidayDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RecipesWpfApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="450">
+    <Grid>
+        <TextBlock Text="{Binding JewishHoliday.Name}"></TextBlock>
+        <TextBlock Text="{Binding JewishHoliday.Description}"></TextBlock>
+        <TextBlock Text="{Binding JewishHoliday.Date}"></TextBlock>
+        <TextBlock Text="{Binding JewishHoliday.Hdate}"></TextBlock>
+    </Grid>
+</UserControl>

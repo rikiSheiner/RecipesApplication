@@ -58,7 +58,11 @@
     </ApplicationDefinition>
     <Compile Include="Commands\AddFoodImageCommand.cs" />
     <Compile Include="Commands\AddImageCommand.cs" />
-    <Compile Include="Commands\AddJewishHolidayCommand.cs" />
+    <Compile Include="Commands\ImagesCommands\BrowseImageCommand.cs" />
+    <Compile Include="Commands\ImagesCommands\UploadImageCommand.cs" />
+    <Compile Include="Commands\JewishHolidayCommands\AddHolidayStateCommand.cs" />
+    <Compile Include="Commands\JewishHolidayCommands\AddJewishHolidayCommand.cs" />
+    <Compile Include="Commands\JewishHolidayCommands\NavigateToHolidayDetailsCommand.cs" />
     <Compile Include="Commands\NotesCommands\AddNoteCommand.cs" />
     <Compile Include="Commands\AddRecipeCommand.cs" />
     <Compile Include="Commands\AsyncCommandBase.cs" />
@@ -104,6 +108,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\IngredientsViewModel.cs" />
     <Compile Include="ViewModels\InstructionsViewModel.cs" />
+    <Compile Include="ViewModels\JewishHolidayDetailsViewModel.cs" />
     <Compile Include="ViewModels\JewishHolidayViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotesViewModel.cs" />
@@ -138,11 +143,17 @@
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ImagesView.xaml.cs">
+      <DependentUpon>ImagesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\IngredientsView.xaml.cs">
       <DependentUpon>IngredientsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InstructionsView.xaml.cs">
       <DependentUpon>InstructionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JewishHolidayDetailsView.xaml.cs">
+      <DependentUpon>JewishHolidayDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\JewishHolidayView.xaml.cs">
       <DependentUpon>JewishHolidayView.xaml</DependentUpon>
@@ -155,9 +166,6 @@
     </Compile>
     <Compile Include="Views\Rating.xaml.cs">
       <DependentUpon>Rating.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ImagesView.xaml.cs">
-      <DependentUpon>ImagesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecipesBookView.xaml.cs">
       <DependentUpon>RecipesBookView.xaml</DependentUpon>
@@ -203,11 +211,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ImagesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\IngredientsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InstructionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JewishHolidayDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,10 +242,6 @@
     <Page Include="Views\Rating.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ImagesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RecipesBookView.xaml">
       <SubType>Designer</SubType>
