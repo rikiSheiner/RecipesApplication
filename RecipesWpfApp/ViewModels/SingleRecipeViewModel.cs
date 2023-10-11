@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RecipesWpfApp.Commands;
 using RecipesWpfApp.Models;
 
 namespace RecipesWpfApp.ViewModels
@@ -39,6 +40,18 @@ namespace RecipesWpfApp.ViewModels
         }
 
         private NotesViewModel _notesViewModel;
+        public NotesViewModel NotesViewModel
+        {
+            get { return _notesViewModel; }
+            set
+            {
+                if(_notesViewModel != value)
+                {
+                    _notesViewModel = value;
+                    OnPropertyChanged(nameof(_notesViewModel));
+                }
+            }
+        }
 
         public ICommand RateRecipeCommand;
         public ICommand UpdateRecipeDetailsCommand;
@@ -50,6 +63,7 @@ namespace RecipesWpfApp.ViewModels
             RecipeDetails = recipeDetails;
             IsSaved = isSaved;
 
+           
             _notesViewModel = new NotesViewModel(this);
             //LoadSingleRecipeCommand = new LoadSingleRecipeCommand(this);
         }

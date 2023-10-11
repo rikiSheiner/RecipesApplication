@@ -28,10 +28,6 @@ namespace RecipesWpfApp.ViewModels
         public ICommand AddImageCommand;
         public ICommand RemoveImageCommand;
 
-        public ImagesViewModel(ICommand addImageCommand, ICommand removeImageCommand)
-        {
-            AddImageCommand = addImageCommand;
-            RemoveImageCommand = removeImageCommand;
-        }
+        
     }
 }

@@ -1,7 +1,9 @@
 ﻿using RecipesWpfApp.Commands;
+using RecipesWpfApp.Commands.NotesCommands;
 using RecipesWpfApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,8 +40,22 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
-        private List<Note> _notes;
-        public List<Note> Notes
+        private string _isInAdding;
+        public string IsInAdding
+        {
+            get { return _isInAdding; }
+            set
+            {
+                if (_isInAdding != value)
+                {
+                    _isInAdding = value;
+                    OnPropertyChanged(nameof(IsInAdding));
+                }
+            }
+        }
+
+        private ObservableCollection<Note> _notes;
+        public ObservableCollection<Note> Notes
         {
             get { return _notes; }
             set 
@@ -54,17 +70,26 @@ namespace RecipesWpfApp.ViewModels
 
         private SingleRecipeViewModel _singleRecipeViewModel;
 
+        public ICommand SetAddNoteContentCommand { get; }
         public ICommand AddNoteCommand { get; }
+        public ICommand CancelAddNoteCommand { get; }
         public ICommand RemoveNoteCommand { get; }
+
 
         public NotesViewModel(SingleRecipeViewModel singleRecipeViewModel)
         {
             _singleRecipeViewModel = singleRecipeViewModel;
             RecipeId = _singleRecipeViewModel.RecipeDetails.Id;
-            _noteToAdd = "click to add note";
-            Notes = _singleRecipeViewModel.RecipeDetails.Notes;
+            NoteToAdd = "click to add note";
+            IsInAdding = "Collapsed";
 
+            Notes = new ObservableCollection<Note>();
+            foreach(var item in _singleRecipeViewModel.RecipeDetails.Notes)
+                Notes.Add(item);
+
+            SetAddNoteContentCommand = new SetAddNoteContentCommand(this);
             AddNoteCommand = new AddNoteCommand(this);
+            CancelAddNoteCommand = new CancelAddNoteCommand(this);  
             RemoveNoteCommand = new RemoveNoteCommand(this);
         }
     }

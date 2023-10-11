@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace RecipesWpfApp.Commands
+namespace RecipesWpfApp.Commands.NotesCommands
 {
     internal class AddNoteCommand : AsyncCommandBase
     {
@@ -19,6 +19,11 @@ namespace RecipesWpfApp.Commands
 
         public AddNoteCommand(NotesViewModel notesViewModel)
         {
+            client = new HttpClient()
+            {
+                BaseAddress=new Uri(API_URL_NOTE)
+            };
+
             _notesViewModel = notesViewModel;
         }
 
@@ -40,13 +45,16 @@ namespace RecipesWpfApp.Commands
 
                 if (saveResponse.IsSuccessStatusCode)
                 {
-                    //MessageBox.Show("success");
+                    MessageBox.Show("note added successfuly");
                 }
                 else
                 {
-                    //MessageBox.Show("ERROR");
+                    MessageBox.Show("ERROR");
                 }
             }
+
+            _notesViewModel.NoteToAdd = "click to add note";
+            _notesViewModel.IsInAdding = "Collapsed";
 
         }
     }

@@ -59,15 +59,17 @@
     <Compile Include="Commands\AddFoodImageCommand.cs" />
     <Compile Include="Commands\AddImageCommand.cs" />
     <Compile Include="Commands\AddJewishHolidayCommand.cs" />
-    <Compile Include="Commands\AddNoteCommand.cs" />
+    <Compile Include="Commands\NotesCommands\AddNoteCommand.cs" />
     <Compile Include="Commands\AddRecipeCommand.cs" />
     <Compile Include="Commands\AsyncCommandBase.cs" />
+    <Compile Include="Commands\NotesCommands\CancelAddNoteCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DeleteRecipeCommand.cs" />
     <Compile Include="Commands\GetRecipeDetailsCommand.cs" />
     <Compile Include="Commands\LoadSavedRecipesCommand.cs" />
     <Compile Include="Commands\NavigationCommands\NavigateRecipesBookCommand.cs" />
     <Compile Include="Commands\NavigationCommands\NavigateSearchRecipeCommand.cs" />
+    <Compile Include="Commands\NotesCommands\SetAddNoteContentCommand.cs" />
     <Compile Include="Commands\ObservableObject.cs" />
     <Compile Include="Commands\RateRecipeCommand.cs" />
     <Compile Include="Commands\RealyCommand.cs" />
@@ -77,7 +79,6 @@
     <Compile Include="Commands\SearchRecipesCommand.cs" />
     <Compile Include="Commands\SearchSavedRecipesCommand.cs" />
     <Compile Include="Commands\NavigationCommands\NavigateToSelectedRecipeCommand.cs" />
-    <Compile Include="Commands\SetAddNoteContentCommand.cs" />
     <Compile Include="Commands\UpdateRecipeCommand.cs" />
     <Compile Include="Commands\UpdateRecipeDetailsCommand.cs" />
     <Compile Include="Converters\BoolToBrushConverter.cs" />
