@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipesWpfApp.Commands
+namespace RecipesWpfApp.Commands.RecipesListCommands
 {
     internal class SearchSavedRecipesCommand : CommandBase
     {

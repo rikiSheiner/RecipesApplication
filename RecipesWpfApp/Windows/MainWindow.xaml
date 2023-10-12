@@ -35,7 +35,10 @@
                 <DataTemplate DataType="{x:Type TypeName=viewmodels:JewishHolidayViewModel}">
                     <views:JewishHolidayView/>
                 </DataTemplate>
-                
+                <DataTemplate DataType="{x:Type TypeName=viewmodels:JewishHolidayDetailsViewModel}">
+                    <views:JewishHolidayDetailsView/>
+                </DataTemplate>
+
             </ContentControl.Resources>
         </ContentControl>
     </Grid>

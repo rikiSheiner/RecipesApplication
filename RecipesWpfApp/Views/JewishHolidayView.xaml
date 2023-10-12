@@ -12,6 +12,12 @@
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
     </UserControl.Resources>
     <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding LoadHolidaysOfRecipeCommand}"></i:InvokeCommandAction>
+                <i:InvokeCommandAction Command="{Binding LoadAllHolidaysCommand}"></i:InvokeCommandAction>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <StackPanel>
             <TextBlock Text="Recommended for preparation on:"></TextBlock>
             <ListView ItemsSource="{Binding Holidays}" SelectedItem="{Binding SelectedJewishHoliday}">
@@ -25,8 +31,11 @@
             <Button Content="Click to Add Holiday" Width="200" 
                     Command="{Binding AddHolidayStateCommand}">
             </Button>
-            <TextBox Text="{Binding JewishHolidayToAdd.Name}" Width="200" Margin="0,15,0,10"
-                     Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></TextBox>
+            <TextBlock Text="Choose the best holiday to cook this recipe"
+                       Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+            <ComboBox Width="200" ItemsSource="{Binding AllHolidays}"
+                      SelectedItem="{Binding JewishHolidayToAdd}"
+                      Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></ComboBox>
             <Button Content="OK" Width="40" Command="{Binding AddJewishHolidayCommand}"
                     Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
         </StackPanel>

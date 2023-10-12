@@ -1,5 +1,7 @@
 ﻿using RecipesWpfApp.Commands;
 using RecipesWpfApp.Commands.NavigationCommands;
+using RecipesWpfApp.Commands.RecipeCommands;
+using RecipesWpfApp.Commands.RecipesListCommands;
 using RecipesWpfApp.Models;
 using RecipesWpfApp.Stores;
 using System;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipesWpfApp.Commands
+namespace RecipesWpfApp.Commands.NotesCommands
 {
     internal class RemoveNoteCommand : AsyncCommandBase
     {

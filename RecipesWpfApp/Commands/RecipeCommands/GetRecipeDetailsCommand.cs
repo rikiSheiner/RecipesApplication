@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipesWpfApp.Commands
+namespace RecipesWpfApp.Commands.RecipeCommands
 {
     internal class GetRecipeDetailsCommand : AsyncCommandBase
     {
@@ -66,12 +66,17 @@ namespace RecipesWpfApp.Commands
                 }
 
                 position = 0;
+                recipeDetails.Instructions = new List<Instruction>();
                 foreach (var item in jsonObject["instructions"])
                 {
-                    position++;
                     display_text = item["display_text"].ToString();
-                    var instruction = new Instruction(recipeId, position, display_text);
-                    recipeDetails.Instructions.Add(instruction);
+                    if(display_text != null && display_text.Length > 0)
+                    {
+                        position++;
+                        var instruction = new Instruction(recipeId, position, display_text);
+                        recipeDetails.Instructions.Add(instruction);
+                    }
+                    
                 }
                 recipeDetails.Notes = new List<Note>();
 

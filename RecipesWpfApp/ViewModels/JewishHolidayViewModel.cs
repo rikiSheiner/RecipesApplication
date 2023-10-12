@@ -42,6 +42,20 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        private ObservableCollection<JewishHoliday> _allHolidays;
+        public ObservableCollection<JewishHoliday> AllHolidays
+        {
+            get { return _allHolidays; }
+            set
+            {
+                if (_allHolidays != value)
+                {
+                    _allHolidays = value;
+                    OnPropertyChanged(nameof(AllHolidays));
+                }
+            }
+        }
+
         private JewishHoliday _selectedJewishHoliday;
         public JewishHoliday SelectedJewishHoliday
         {
@@ -70,9 +84,29 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // The details of the selected recipe
+        private RecipeDetails _recipeDetails;
+        public RecipeDetails RecipeDetails
+        {
+            get { return _recipeDetails; }
+            set
+            {
+                if (_recipeDetails != value)
+                {
+                    _recipeDetails = value;
+                    OnPropertyChanged(nameof(RecipeDetails));
+                }
+            }
+        }
+
+        public string ApiHolidayUrl { get; }
+
+
         private SingleRecipeViewModel _singleRecipeViewModel;
         private NavigationStore _navigationStore;
 
+        public ICommand LoadHolidaysOfRecipeCommand { get; }
+        public ICommand LoadAllHolidaysCommand { get; }
         public ICommand AddHolidayStateCommand { get; }
         public ICommand AddJewishHolidayCommand { get; }
         public ICommand GetJewishHolidayDetailsCommand { get; }
@@ -82,10 +116,16 @@ namespace RecipesWpfApp.ViewModels
             _singleRecipeViewModel = singleRecipeViewModel;
             _navigationStore = navigationStore;
 
-            Holidays = new ObservableCollection<JewishHoliday>();
-
+            ApiHolidayUrl = "https://localhost:7079/api/JewishHoliday";
+            
             IsInAddingHoliday = false;
 
+            RecipeDetails = _singleRecipeViewModel.RecipeDetails;
+
+            JewishHolidayToAdd = new JewishHoliday();
+
+            LoadHolidaysOfRecipeCommand = new LoadHolidaysOfRecipeCommands(this);
+            LoadAllHolidaysCommand = new LoadAllHolidaysCommand(this);
             AddHolidayStateCommand = new AddHolidayStateCommand(this);
             AddJewishHolidayCommand = new AddJewishHolidayCommand(this);
             GetJewishHolidayDetailsCommand = new NavigateToHolidayDetailsCommand(this, _navigationStore);

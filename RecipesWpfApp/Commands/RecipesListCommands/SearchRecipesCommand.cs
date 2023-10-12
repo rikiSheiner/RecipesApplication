@@ -12,7 +12,7 @@ using System.Windows;
 using RecipesWpfApp.ViewModels;
 using System.Collections;
 
-namespace RecipesWpfApp.Commands
+namespace RecipesWpfApp.Commands.RecipesListCommands
 {
     internal class SearchRecipesCommand : AsyncCommandBase
     {

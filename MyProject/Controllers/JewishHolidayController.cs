@@ -45,18 +45,29 @@ namespace MyProject.Controllers
             return NoContent();
         }
 
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<JewishHoliday>> GetHoliday(int id)
+        // The method returns the jewish holidays that associated with specific recipe
+        [HttpGet("{recipeId}")]
+        public async Task<ActionResult<IEnumerable<JewishHoliday>>> GetJewishHolidaysOfRecipe(int recipeId)
         {
-            var holiday = await _context.jewishHoliday.FirstAsync(e => e.HolidayId == id);
+            // Find the ID numbers of the holidays when the recipe has been cooked
+            var recipeInHolidays = await _context.recipeInHoliday.Where(e => e.RecipeId == recipeId).ToListAsync();
 
-            if (holiday == null)
+            // Get the holidays details
+            List<JewishHoliday> holidays = new List<JewishHoliday>();
+            foreach (var item in recipeInHolidays)
+            {
+                var holiday = await _context.jewishHoliday.FirstAsync(e => e.HolidayId == item.HolidayId);
+
+                if (holiday != null)
+                    holidays.Add(holiday);
+            }
+
+            if (holidays.Count == 0)
             {
                 return NotFound();
             }
 
-            return holiday;
+            return holidays;
         }
 
 

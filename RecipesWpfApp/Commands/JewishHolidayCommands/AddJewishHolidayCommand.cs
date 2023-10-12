@@ -3,6 +3,7 @@ using RecipesWpfApp.Models;
 using RecipesWpfApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -24,71 +25,51 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
         {
             if (_jewishHolidayViewModel.JewishHolidayToAdd != null)
             {
-                // בשורות הקוד הבאות מתבצעת יצירת אוביקט של מועד ישראל
-                // על סמך הקלט של המועד שהזין המשתמש
-                // לאחר יצירת אוביקט המועד נצטרך לבצע שמירה של המועד בבסיס הנתונים
+                // Check if the holiday exists in the database
+                HttpClient client = new HttpClient();
+                string apiUrl = "https://localhost:7079/api/JewishHoliday";
 
-
-                HttpClient client = new HttpClient
+                bool found = false;
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                if (response.IsSuccessStatusCode)
                 {
-                    BaseAddress = new Uri("https://www.hebcal.com/holidays/")
-                };
-
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://www.hebcal.com/hebcal?cfg=json&v=1&maj=on&min=off&mod=off&nx=off&year=now&month=x&ss=off&mf=off&c=off&geo=none")
-                };
-
-                using (var response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    string responseContent = await response.Content.ReadAsStringAsync();
-
-                    dynamic jsonObject = JsonConvert.DeserializeObject(responseContent);
-
-                    JewishHoliday jewishHoliday = _jewishHolidayViewModel.JewishHolidayToAdd;
-
-                    foreach (var item in jsonObject["items"])
+                    List<JewishHoliday> savedHolidays;
+                    using (Stream stream = await response.Content.ReadAsStreamAsync())
+                    using (StreamReader reader = new StreamReader(stream))
                     {
-                        if (item["title"] == jewishHoliday.Name)
-                        {
-                            jewishHoliday = new JewishHoliday
-                            {
-                                Name = item["title"],
-                                HebrewName = item["hebrew"],
-                                Date = item["date"],
-                                HebrewDate = item["hdate"],
-                                Description = item["memo"]
-                            };
-                            break;
-                        }
-                    }
-
-
-                    // שמירה של המועד בבסיס הנתונים
-
-                    string serializedHoliday = JsonConvert.SerializeObject(jewishHoliday);
-
-                    string API_URL = "https://localhost:7079/api/JewishHoliday";
-
-                    HttpResponseMessage saveResponse = await client.PostAsync(API_URL, new StringContent(serializedHoliday, Encoding.UTF8, "application/json"));
-
-                    if (saveResponse.IsSuccessStatusCode)
-                    {
-                        MessageBox.Show("success");
-                    }
-                    else
-                    {
-                        MessageBox.Show("ERROR");
+                        string json = reader.ReadToEnd();
+                        savedHolidays = JsonConvert.DeserializeObject<List<JewishHoliday>>(json);
+                        if (savedHolidays.Contains(_jewishHolidayViewModel.JewishHolidayToAdd))
+                            found = true;
                     }
                 }
 
-                _jewishHolidayViewModel.IsInAddingHoliday = false;
+                // If not, save the holiday in the database
+                if (!found)
+                {
+                    string serializedHoliday = JsonConvert.SerializeObject(_jewishHolidayViewModel.JewishHolidayToAdd);
+
+                    HttpResponseMessage saveHolidayResponse = await client.PostAsync(apiUrl,
+                         new StringContent(serializedHoliday, Encoding.UTF8, "application/json"));
+
+                }
+
+                // Save documentation of holiday when it is recommended to cook the recipe
+                RecipeInHoliday recipeInHoliday = new RecipeInHoliday(
+                    _jewishHolidayViewModel.JewishHolidayToAdd.HolidayId,
+                     _jewishHolidayViewModel.RecipeDetails.Id);
+
+                string serializedRecipeInHoliday = JsonConvert.SerializeObject(recipeInHoliday);
+
+                HttpResponseMessage saveRecipeInHolidayResponse = await client.PostAsync(apiUrl,
+                     new StringContent(serializedRecipeInHoliday, Encoding.UTF8, "application/json"));
             }
+
+            _jewishHolidayViewModel.IsInAddingHoliday = false;
+        }
 
             
             
-        }
     }
 }
+

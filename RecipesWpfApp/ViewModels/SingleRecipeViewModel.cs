@@ -22,10 +22,25 @@ namespace RecipesWpfApp.ViewModels
                 if (_isNotSaved != value)
                 {
                     _isNotSaved = value;
+                    //IsSaved = !_isNotSaved;
                     OnPropertyChanged(nameof(IsNotSaved));
                 }
             }
         }
+
+        /*private bool _isSaved;
+        public bool IsSaved
+        {
+            get { return _isSaved; }
+            set
+            {
+                if (_isSaved != value)
+                {
+                    _isSaved = value;
+                    OnPropertyChanged(nameof(IsSaved));
+                }
+            }
+        }*/
 
         private RecipeDetails _recipeDetails;
         public RecipeDetails RecipeDetails

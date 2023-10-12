@@ -75,9 +75,12 @@
 
                 <!--local:NotesView DataContext="{Binding NotesViewModel}"/-->
 
-                <ContentControl Content="{Binding ImagesViewModel}"/>
-                <ContentControl Content="{Binding NotesViewModel}"/>
-                <ContentControl Content="{Binding JewishHolidayViewModel}"/>
+                <ContentControl Content="{Binding ImagesViewModel}" 
+                                Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                <ContentControl Content="{Binding NotesViewModel}"
+                                Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                <ContentControl Content="{Binding JewishHolidayViewModel}"
+                                Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}"/>
 
             </StackPanel>
 

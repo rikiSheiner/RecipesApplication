@@ -7,9 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="450">
     <Grid>
-        <TextBlock Text="{Binding JewishHoliday.Name}"></TextBlock>
-        <TextBlock Text="{Binding JewishHoliday.Description}"></TextBlock>
-        <TextBlock Text="{Binding JewishHoliday.Date}"></TextBlock>
-        <TextBlock Text="{Binding JewishHoliday.Hdate}"></TextBlock>
+        <StackPanel>
+            <TextBlock Text="{Binding JewishHoliday.Name}"></TextBlock>
+            <TextBlock Text="{Binding JewishHoliday.Description}"></TextBlock>
+            <TextBlock Text="{Binding JewishHoliday.Date}"></TextBlock>
+            <TextBlock Text="{Binding JewishHoliday.Hdate}"></TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>
