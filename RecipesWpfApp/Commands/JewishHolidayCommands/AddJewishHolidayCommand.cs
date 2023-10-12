@@ -84,7 +84,7 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
                     }
                 }
 
-                _jewishHolidayViewModel.AddingHolidayVisibility = "Collapsed";
+                _jewishHolidayViewModel.IsInAddingHoliday = false;
             }
 
             

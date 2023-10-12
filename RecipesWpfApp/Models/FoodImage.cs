@@ -13,6 +13,7 @@ namespace RecipesWpfApp.Models
 {
     public class FoodImage: ObservableObject
     {
+        public const string ImagesFilePath = "C:/Users/1/Source/Repos/MyFinalProject2023/MyProject/Images/";
         public static int CounterFoodImages = 1;
 
         private int _imageId;
@@ -50,6 +51,7 @@ namespace RecipesWpfApp.Models
                 if (_imageName != value)
                 {
                     _imageName = value;
+                    ImagePath = ImagesFilePath + ImageName;
                     OnPropertyChanged(nameof(ImageName));
                 }
             }
@@ -79,6 +81,20 @@ namespace RecipesWpfApp.Models
                 {
                     _imgaeFile = value;
                     OnPropertyChanged(nameof(ImageFile));
+                }
+            }
+        }
+
+        private string _imagePath;
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set
+            {
+                if(_imagePath != value)
+                {
+                    _imagePath = value;
+                    OnPropertyChanged(nameof(ImagePath));
                 }
             }
         }

@@ -56,19 +56,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\AddFoodImageCommand.cs" />
-    <Compile Include="Commands\AddImageCommand.cs" />
     <Compile Include="Commands\ImagesCommands\BrowseImageCommand.cs" />
+    <Compile Include="Commands\ImagesCommands\LoadImagesOfRecipeCommand.cs" />
     <Compile Include="Commands\ImagesCommands\UploadImageCommand.cs" />
     <Compile Include="Commands\JewishHolidayCommands\AddHolidayStateCommand.cs" />
     <Compile Include="Commands\JewishHolidayCommands\AddJewishHolidayCommand.cs" />
     <Compile Include="Commands\JewishHolidayCommands\NavigateToHolidayDetailsCommand.cs" />
     <Compile Include="Commands\NotesCommands\AddNoteCommand.cs" />
-    <Compile Include="Commands\AddRecipeCommand.cs" />
     <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\NotesCommands\CancelAddNoteCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\DeleteRecipeCommand.cs" />
     <Compile Include="Commands\GetRecipeDetailsCommand.cs" />
     <Compile Include="Commands\LoadSavedRecipesCommand.cs" />
     <Compile Include="Commands\NavigationCommands\NavigateRecipesBookCommand.cs" />
@@ -77,15 +74,13 @@
     <Compile Include="Commands\ObservableObject.cs" />
     <Compile Include="Commands\RateRecipeCommand.cs" />
     <Compile Include="Commands\RealyCommand.cs" />
-    <Compile Include="Commands\RemoveImageCommand.cs" />
-    <Compile Include="Commands\RemoveJewishHolidayCommand.cs" />
+    <Compile Include="Commands\RecipeCommands\SaveRecipeCommand.cs" />
     <Compile Include="Commands\RemoveNoteCommand.cs" />
     <Compile Include="Commands\SearchRecipesCommand.cs" />
     <Compile Include="Commands\SearchSavedRecipesCommand.cs" />
     <Compile Include="Commands\NavigationCommands\NavigateToSelectedRecipeCommand.cs" />
-    <Compile Include="Commands\UpdateRecipeCommand.cs" />
-    <Compile Include="Commands\UpdateRecipeDetailsCommand.cs" />
     <Compile Include="Converters\BoolToBrushConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\RatingToBoolConverter .cs" />
     <Compile Include="Models\ApiModel.cs" />
     <Compile Include="Models\FoodImage.cs" />

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RecipesWpfApp.Commands;
+using RecipesWpfApp.Commands.RecipeCommands;
 using RecipesWpfApp.Models;
 using RecipesWpfApp.Stores;
 
@@ -12,16 +13,16 @@ namespace RecipesWpfApp.ViewModels
 {
     internal class SingleRecipeViewModel : ViewModelBase
     {
-        private bool _isSaved;
-        public bool IsSaved
+        private bool _isNotSaved;
+        public bool IsNotSaved
         {
-            get { return _isSaved; }
+            get { return _isNotSaved; }
             set
             {
-                if (_isSaved != value)
+                if (_isNotSaved != value)
                 {
-                    _isSaved = value;
-                    OnPropertyChanged(nameof(IsSaved));
+                    _isNotSaved = value;
+                    OnPropertyChanged(nameof(IsNotSaved));
                 }
             }
         }
@@ -49,7 +50,7 @@ namespace RecipesWpfApp.ViewModels
                 if(_notesViewModel != value)
                 {
                     _notesViewModel = value;
-                    OnPropertyChanged(nameof(_notesViewModel));
+                    OnPropertyChanged(nameof(NotesViewModel));
                 }
             }
         }
@@ -82,8 +83,9 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
-        public ICommand RateRecipeCommand;
-        public ICommand UpdateRecipeDetailsCommand;
+        public ICommand SaveRecipeCommand { get; }
+        public ICommand RateRecipeCommand { get; }
+        public ICommand UpdateRecipeDetailsCommand { get; }
 
         private readonly NavigationStore _navigationStore;
 
@@ -91,13 +93,17 @@ namespace RecipesWpfApp.ViewModels
             NavigationStore navigationStore)
         {
             RecipeDetails = recipeDetails;
-            IsSaved = isSaved;
+            IsNotSaved = !isSaved;
+
+            SaveRecipeCommand = new SaveRecipeCommand(this);
+
+
             _navigationStore = navigationStore;
 
-           
             _notesViewModel = new NotesViewModel(this);
             _imagesViewModel = new ImagesViewModel(this);
             _jewishHolidayViewModel = new JewishHolidayViewModel(this, _navigationStore);
+
         }
     }
 }

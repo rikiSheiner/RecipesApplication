@@ -57,6 +57,8 @@ namespace RecipesWpfApp.Commands.ImagesCommands
                         // Read and return the response content
                         var responseContent = await response.Content.ReadAsStringAsync();
                         //return responseContent;
+
+                        _imagesViewModel.IsInAdding = false;
                     }
                     else
                     {

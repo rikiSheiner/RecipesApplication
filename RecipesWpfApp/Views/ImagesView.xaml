@@ -4,25 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RecipesWpfApp.Views"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:converters="clr-namespace:RecipesWpfApp.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding LoadImagesOfRecipeCommand}"></i:InvokeCommandAction>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
 
         <StackPanel>
-            <Button x:Name="BrowseButton"  Content="browse image" Height="30" Width="80"
+            <Button x:Name="BrowseButton"  Content="click to add image" Height="30" Width="120"
                     Command="{Binding BrowseImageCommand}"></Button>
-            <Button x:Name="UploadButton"  Content="upload image" Height="30" Width="80"
-                    Command="{Binding UploadImageCommand}"></Button>
-            <Image x:Name="recipeImage" Width="200" Height="200" DataContext="{Binding ImageToAdd.ImageFile}"/>
-            <ListView>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Image Source="{Binding Images}"></Image>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <Image Source="{Binding BitmapImageToAdd}" Height="300" Width="300"
+                   Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"></Image>
+            <Button x:Name="UploadButton"  Content="Add" Height="30" Width="80"
+                    Command="{Binding UploadImageCommand}"
+                    Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}">
+            </Button>
+
+            <ListView Name="imageListView" ItemsSource="{Binding Images}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Image" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding ImagePath}" Width="100" Height="100"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
             </ListView>
+
+            
         </StackPanel>
         
     </Grid>

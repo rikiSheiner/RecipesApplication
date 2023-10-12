@@ -19,7 +19,7 @@ namespace RecipesWpfApp.Commands.NotesCommands
         public override void Execute(object parameter)
         {
             _notesViewModel.NoteToAdd = "click to add note";
-            _notesViewModel.IsInAdding = "Collapsed";
+            _notesViewModel.IsInAdding = false;
         }
     }
 }

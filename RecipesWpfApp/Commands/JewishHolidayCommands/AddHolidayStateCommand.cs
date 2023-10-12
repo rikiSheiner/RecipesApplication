@@ -17,7 +17,7 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
 
         public override void Execute(object parameter)
         {
-            _jewishHolidayViewModel.AddingHolidayVisibility = "Visible";
+            _jewishHolidayViewModel.IsInAddingHoliday = true;
         }
     }
 }

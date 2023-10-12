@@ -56,16 +56,16 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
-        private string _addingHolidayVisibility;
-        public string AddingHolidayVisibility
+        private bool _isInAddingHoliday;
+        public bool IsInAddingHoliday
         {
-            get { return _addingHolidayVisibility; }
+            get { return _isInAddingHoliday; }
             set
             {
-                if(_addingHolidayVisibility != value)
+                if(_isInAddingHoliday != value)
                 {
-                    _addingHolidayVisibility = value;
-                    OnPropertyChanged(nameof(AddingHolidayVisibility));
+                    _isInAddingHoliday = value;
+                    OnPropertyChanged(nameof(IsInAddingHoliday));
                 }
             }
         }
@@ -73,9 +73,9 @@ namespace RecipesWpfApp.ViewModels
         private SingleRecipeViewModel _singleRecipeViewModel;
         private NavigationStore _navigationStore;
 
-        public ICommand AddHolidayStateCommand;
-        public ICommand AddJewishHolidayCommand;
-        public ICommand GetJewishHolidayDetailsCommand;
+        public ICommand AddHolidayStateCommand { get; }
+        public ICommand AddJewishHolidayCommand { get; }
+        public ICommand GetJewishHolidayDetailsCommand { get; }
 
         public JewishHolidayViewModel(SingleRecipeViewModel singleRecipeViewModel, NavigationStore navigationStore)
         {
@@ -84,7 +84,7 @@ namespace RecipesWpfApp.ViewModels
 
             Holidays = new ObservableCollection<JewishHoliday>();
 
-            AddingHolidayVisibility = "Collapsed";
+            IsInAddingHoliday = false;
 
             AddHolidayStateCommand = new AddHolidayStateCommand(this);
             AddJewishHolidayCommand = new AddJewishHolidayCommand(this);

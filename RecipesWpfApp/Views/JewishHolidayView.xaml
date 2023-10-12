@@ -5,9 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RecipesWpfApp.Views"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-
+             xmlns:converters="clr-namespace:RecipesWpfApp.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
+    </UserControl.Resources>
     <Grid>
         <StackPanel>
             <TextBlock Text="Recommended for preparation on:"></TextBlock>
@@ -19,11 +22,13 @@
                 </i:Interaction.Triggers>
             </ListView>
 
-            <Button Content="Click to Add Holiday" Width="200" Command="{Binding AddHolidayStateCommand}"></Button>
+            <Button Content="Click to Add Holiday" Width="200" 
+                    Command="{Binding AddHolidayStateCommand}">
+            </Button>
             <TextBox Text="{Binding JewishHolidayToAdd.Name}" Width="200" Margin="0,15,0,10"
-                     Visibility="{Binding AddingHolidayVisibility}"></TextBox>
+                     Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></TextBox>
             <Button Content="OK" Width="40" Command="{Binding AddJewishHolidayCommand}"
-                    Visibility="{Binding AddingHolidayVisibility}"></Button>
+                    Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
         </StackPanel>
         
     </Grid>

@@ -54,7 +54,7 @@ namespace RecipesWpfApp.Commands.NotesCommands
             }
 
             _notesViewModel.NoteToAdd = "click to add note";
-            _notesViewModel.IsInAdding = "Collapsed";
+            _notesViewModel.IsInAdding = false;
 
         }
     }

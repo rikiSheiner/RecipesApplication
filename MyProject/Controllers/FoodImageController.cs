@@ -41,17 +41,18 @@ namespace MyProject.Controllers
         }
 
 
+        // This method returns the images objects that belongs to specific recipe
         [HttpGet]
-        public async Task<ActionResult<FoodImage>> GetFoodImage(int recipeId)
+        public async Task<ActionResult<IEnumerable<FoodImage>>> GetFoodImage(int recipeId)
         {
-            var foodImage = await _context.foodImages.FirstAsync(e => e.RecipeId == recipeId);
+            var foodImages = await _context.foodImages.Where(e=>e.RecipeId == recipeId).ToListAsync();
 
-            if (foodImage == null)
+            if (foodImages == null)
             {
                 return NotFound();
             }
 
-            return foodImage;
+            return foodImages;
         }
 
         /*

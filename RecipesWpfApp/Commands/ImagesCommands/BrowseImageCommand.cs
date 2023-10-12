@@ -31,12 +31,9 @@ namespace RecipesWpfApp.Commands.ImagesCommands
 
             if (openFileDialog.ShowDialog() == true)
             {
-                // Create the RecipeImageObject and set its properties based on the selected file
-
-
                 _imagesViewModel.ImageToAdd = new FoodImage
                 {
-                    Title = _imagesViewModel.RecipeDetails.Name, // Set other properties as needed
+                    Title = _imagesViewModel.RecipeDetails.Name, 
                     ImageName = _imagesViewModel.RecipeDetails.Name + " Image",
                     RecipeId = _imagesViewModel.RecipeDetails.Id,
                     ImageFile = new FormFile(openFileDialog.OpenFile(), 0, openFileDialog.OpenFile().Length, _imagesViewModel.RecipeDetails.Name + " Image", openFileDialog.FileName)
@@ -44,11 +41,9 @@ namespace RecipesWpfApp.Commands.ImagesCommands
 
                 string imagePath = openFileDialog.FileName;
 
-                //recipeImage.Source = new BitmapImage(new Uri(imagePath));
+                _imagesViewModel.BitmapImageToAdd = new BitmapImage(new Uri(imagePath));
 
-
-                //recipeDetails.Images.Add(myFoodImage.ImageFile);
-
+                _imagesViewModel.IsInAdding = true;
             }
         }
 

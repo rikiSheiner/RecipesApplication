@@ -40,8 +40,8 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
-        private string _isInAdding;
-        public string IsInAdding
+        private bool _isInAdding;
+        public bool IsInAdding
         {
             get { return _isInAdding; }
             set
@@ -81,7 +81,7 @@ namespace RecipesWpfApp.ViewModels
             _singleRecipeViewModel = singleRecipeViewModel;
             RecipeId = _singleRecipeViewModel.RecipeDetails.Id;
             NoteToAdd = "click to add note";
-            IsInAdding = "Collapsed";
+            IsInAdding = false;
 
             Notes = new ObservableCollection<Note>();
             foreach(var item in _singleRecipeViewModel.RecipeDetails.Notes)

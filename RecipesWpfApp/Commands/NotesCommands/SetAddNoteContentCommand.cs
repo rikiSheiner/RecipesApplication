@@ -18,7 +18,7 @@ namespace RecipesWpfApp.Commands.NotesCommands
         public override void Execute(object parameter)
         {
             _notesViewModel.NoteToAdd = "";
-            _notesViewModel.IsInAdding = "Visible";
+            _notesViewModel.IsInAdding = true;
         }
     }
 }
