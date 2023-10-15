@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:RecipesWpfApp.Views"
              xmlns:viewmodels="clr-namespace:RecipesWpfApp.ViewModels"
              xmlns:converters="clr-namespace:RecipesWpfApp.Converters"
+             xmlns:components="clr-namespace:RecipesWpfApp.Components"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="450">
@@ -13,78 +14,81 @@
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
     </UserControl.Resources>
 
-    <Grid Background="AliceBlue">
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding LoadSingleRecipeCommand}"></i:InvokeCommandAction>
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <StackPanel>
-                <TextBlock x:Name="nameTB" Text="{Binding RecipeDetails.Name}" Margin="20,20,0,0" FontSize="30" FontWeight="Bold"></TextBlock>
-                <TextBlock x:Name="descriptionTB" Text="{Binding RecipeDetails.Description}" Margin="20,20,0,0" FontSize="18"></TextBlock>
-                <StackPanel Margin="50" Orientation="Horizontal">
-                    <TextBlock Foreground="RosyBrown" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontFamily="Arial">Please Rate It</TextBlock>
-                    <local:Rating x:Name="starsRating" Height="60" Width="100" VerticalAlignment="Center" Margin="0,80,0,79" />
-                </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="cookTimeTB" Text="Cook Time: " Margin="20,40,0,0" FontWeight="Bold" FontSize="16"></TextBlock>
-                    <TextBlock x:Name="cookTimeValueTB" Text="{Binding RecipeDetails.Cook_Time_Minutes}" Margin="20,40,0,0" FontSize="16" ></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="numServingsTB" Text="Servings: " Margin="20" FontWeight="Bold" FontSize="16"></TextBlock>
-                    <TextBlock x:Name="numServingsValueTB" Text="{Binding RecipeDetails.Num_Servings}" Margin="20" FontSize="16" ></TextBlock>
-                </StackPanel>
-                <TextBlock x:Name="ingredientsTB" Text="Ingredients" Margin="20,40,0,0" FontSize="20"></TextBlock>
-                <ListView x:Name="ingredientsLV" ItemsSource="{Binding RecipeDetails.Ingredients}" Margin="20,20,0,0" FontSize="14"
+        <components:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}"/>
+        
+        <Grid Background="AliceBlue" Grid.Row="1">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding LoadSingleRecipeCommand}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock x:Name="nameTB" Text="{Binding RecipeDetails.Name}" Margin="20,20,0,0" FontSize="30" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="descriptionTB" Text="{Binding RecipeDetails.Description}" Margin="20,20,0,0" FontSize="18"></TextBlock>
+                    <StackPanel Margin="50" Orientation="Horizontal">
+                        <TextBlock Foreground="RosyBrown" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontFamily="Arial">Please Rate It</TextBlock>
+                        <local:Rating x:Name="starsRating" Height="60" Width="100" VerticalAlignment="Center" Margin="0,80,0,79" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="cookTimeTB" Text="Cook Time: " Margin="20,40,0,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        <TextBlock x:Name="cookTimeValueTB" Text="{Binding RecipeDetails.Cook_Time_Minutes}" Margin="20,40,0,0" FontSize="16" ></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="numServingsTB" Text="Servings: " Margin="20" FontWeight="Bold" FontSize="16"></TextBlock>
+                        <TextBlock x:Name="numServingsValueTB" Text="{Binding RecipeDetails.Num_Servings}" Margin="20" FontSize="16" ></TextBlock>
+                    </StackPanel>
+                    <TextBlock x:Name="ingredientsTB" Text="Ingredients" Margin="20,40,0,0" FontSize="20"></TextBlock>
+                    <ListView x:Name="ingredientsLV" ItemsSource="{Binding RecipeDetails.Ingredients}" Margin="20,20,0,0" FontSize="14"
                           BorderThickness="0">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Margin" Value="0,5,0,5" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-                <TextBlock x:Name="instructionsTB" Text="Instructions" Margin="20,40,0,0" FontSize="20"></TextBlock>
-                <ListView x:Name="instructionLV" ItemsSource="{Binding RecipeDetails.Instructions}" Margin="20,20,0,0" FontSize="14"
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Margin" Value="0,5,0,5" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <TextBlock x:Name="instructionsTB" Text="Instructions" Margin="20,40,0,0" FontSize="20"></TextBlock>
+                    <ListView x:Name="instructionLV" ItemsSource="{Binding RecipeDetails.Instructions}" Margin="20,20,0,0" FontSize="14"
                           BorderThickness="0">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Margin" Value="0,5,0,5" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Text}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Margin" Value="0,5,0,5" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Text}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
 
-                <Button x:Name="saveBtn" Content="save" Margin="20,20,0,0"
+                    <Button x:Name="saveBtn" Content="save" Margin="20,20,0,0"
                         Background="MediumPurple" Foreground="White" FontSize="20" FontWeight="Bold"
                         Command="{Binding SaveRecipeCommand}"
                         Visibility="{Binding IsNotSaved, Converter={StaticResource BoolToVisibilityConverter}}">
-                </Button>
+                    </Button>
 
-                <!--local:ImagesView DataContext="{Binding ImagesViewModel}"/-->
-
-                <!--local:JewishHolidayView DataContext="{Binding JewishHolidayViewModel}"/-->
-
-                <!--local:NotesView DataContext="{Binding NotesViewModel}"/-->
-
-                <ContentControl Content="{Binding ImagesViewModel}" 
+                    <ContentControl Content="{Binding ImagesViewModel}" 
                                 Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                <ContentControl Content="{Binding NotesViewModel}"
+                    <ContentControl Content="{Binding NotesViewModel}"
                                 Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                <ContentControl Content="{Binding JewishHolidayViewModel}"
+                    <ContentControl Content="{Binding JewishHolidayViewModel}"
                                 Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}"/>
 
-            </StackPanel>
+                </StackPanel>
 
-        </ScrollViewer>
+            </ScrollViewer>
 
+        </Grid>
     </Grid>
 </UserControl>

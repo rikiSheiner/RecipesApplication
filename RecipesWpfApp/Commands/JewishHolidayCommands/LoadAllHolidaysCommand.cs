@@ -56,8 +56,6 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
                     };
                     _jewishHolidayViewModel.AllHolidays.Add(currentHoliday);
                 }
-
-
             }
         }
     }

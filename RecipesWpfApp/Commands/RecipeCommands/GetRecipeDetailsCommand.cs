@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using RecipesWpfApp.Commands.NavigationCommands;
 using RecipesWpfApp.Models;
+using RecipesWpfApp.Services;
 using RecipesWpfApp.Stores;
 using RecipesWpfApp.ViewModels;
 using System;
@@ -9,13 +9,17 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RecipesWpfApp.Commands.RecipeCommands
 {
     internal class GetRecipeDetailsCommand : AsyncCommandBase
     {
+        public NavigationBarViewModel NavigationBarViewModel { get; }
         private SearchRecipeViewModel _searchRecipeViewModel;
         private readonly NavigationStore _navigationStore;
+
+        private ICommand SelectRecipeCommand { get; }
 
         private const string BASE_URL_REST_API = "https://tasty.p.rapidapi.com/";
         private const string MORE_INFO_ENDPOINT = "recipes/get-more-info?id={0}";
@@ -23,10 +27,19 @@ namespace RecipesWpfApp.Commands.RecipeCommands
         private const string API_HOST = "tasty.p.rapidapi.com";
         private const string API_BASE_URL = "https://localhost:7079/api";
 
-        public GetRecipeDetailsCommand(SearchRecipeViewModel searchRecipeViewModel, NavigationStore navigationStore)
+        public GetRecipeDetailsCommand(SearchRecipeViewModel searchRecipeViewModel, NavigationBarViewModel navigationBarViewModel,
+            NavigationStore navigationStore)
         {
+            NavigationBarViewModel = navigationBarViewModel;
             _searchRecipeViewModel = searchRecipeViewModel;
             _navigationStore = navigationStore;
+
+
+            ParameterNavigationService<RecipeDetails, SingleRecipeViewModel> navigationService =
+                    new ParameterNavigationService<RecipeDetails, SingleRecipeViewModel>(_navigationStore,
+                    (parameter) => new SingleRecipeViewModel(navigationBarViewModel,parameter, false, _navigationStore));
+
+            new SelectRecipeCommand(_searchRecipeViewModel, navigationService);
         }
         public override async Task ExecuteAsync(object parameter)
         {
@@ -79,11 +92,16 @@ namespace RecipesWpfApp.Commands.RecipeCommands
                     
                 }
                 recipeDetails.Notes = new List<Note>();
-
-                _searchRecipeViewModel.SelectedRecipeDetails = recipeDetails;
-
-                new NavigateToSelectedRecipeCommand(_navigationStore, _searchRecipeViewModel).Execute("false");
             }
+
+            _searchRecipeViewModel.SelectedRecipeDetails = recipeDetails;
+
+
+            ParameterNavigationService<RecipeDetails, SingleRecipeViewModel> navigationService =
+                new ParameterNavigationService<RecipeDetails, SingleRecipeViewModel>(_navigationStore,
+                (p) => new SingleRecipeViewModel( NavigationBarViewModel, p, false, _navigationStore));
+
+            new SelectRecipeCommand(_searchRecipeViewModel, navigationService).Execute("false");
         }
     }
 }

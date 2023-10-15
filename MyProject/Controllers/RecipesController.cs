@@ -29,7 +29,7 @@ namespace MyProject.Controllers
         public async Task<ActionResult<IEnumerable<Recipe>>> GetRecipes()
         {
             return await _context.Recipes.Include("Ingredients")
-                .Include("Instructions").Include("Notes").ToListAsync();
+                .Include("Instructions").Include("Notes").Include("FoodImage").ToListAsync();
         }
 
 

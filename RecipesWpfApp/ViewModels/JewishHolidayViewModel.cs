@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RecipesWpfApp.Commands;
 using RecipesWpfApp.Commands.JewishHolidayCommands;
+using RecipesWpfApp.Commands.RecipeCommands;
 using RecipesWpfApp.Models;
+using RecipesWpfApp.Services;
 using RecipesWpfApp.Stores;
 
 namespace RecipesWpfApp.ViewModels
@@ -128,7 +130,12 @@ namespace RecipesWpfApp.ViewModels
             LoadAllHolidaysCommand = new LoadAllHolidaysCommand(this);
             AddHolidayStateCommand = new AddHolidayStateCommand(this);
             AddJewishHolidayCommand = new AddJewishHolidayCommand(this);
-            GetJewishHolidayDetailsCommand = new NavigateToHolidayDetailsCommand(this, _navigationStore);
+
+            ParameterNavigationService<JewishHoliday, JewishHolidayDetailsViewModel> navigationService =
+                    new ParameterNavigationService<JewishHoliday, JewishHolidayDetailsViewModel>(navigationStore,
+                    (parameter) => new JewishHolidayDetailsViewModel(parameter, navigationStore));
+
+            GetJewishHolidayDetailsCommand = new SelectJewishHolidayCommand(this, navigationService);
         }
     }
 }

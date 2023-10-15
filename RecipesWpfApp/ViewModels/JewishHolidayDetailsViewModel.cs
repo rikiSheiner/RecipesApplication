@@ -25,16 +25,12 @@ namespace RecipesWpfApp.ViewModels
         }
 
         private NavigationStore _navigationStore;
-        private JewishHolidayViewModel _jewishHolidayViewModel;
 
-        public JewishHolidayDetailsViewModel(JewishHolidayViewModel jewishHolidayViewModel, NavigationStore navigationStore)
+
+        public JewishHolidayDetailsViewModel(JewishHoliday jewishHoliday, NavigationStore navigationStore)
         {
-            _jewishHolidayViewModel = jewishHolidayViewModel;
+            JewishHoliday = jewishHoliday;
             _navigationStore = navigationStore;
-
-            JewishHoliday = _jewishHolidayViewModel.SelectedJewishHoliday;
         }
-
-
     }
 }

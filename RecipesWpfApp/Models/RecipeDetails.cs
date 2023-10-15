@@ -178,20 +178,20 @@ namespace RecipesWpfApp.Models
         }
         */
 
-        /*private IFormFile _images;
-        public IFormFile Images
+        private string _imagePath;
+        public string ImagePath
         {
-            get { return _images; }
+            get { return _imagePath; }
 
             set
             {
-                if (_images != value)
+                if (_imagePath != value)
                 {
-                    _images = value;
-                    OnPropertyChanged("Images");
+                    _imagePath = value;
+                    OnPropertyChanged(nameof(ImagePath));
                 }
             }
-        }*/
+        }
 
         public RecipeDetails()
         {

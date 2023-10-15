@@ -1,7 +1,8 @@
 ﻿using RecipesWpfApp.Commands;
-using RecipesWpfApp.Commands.NavigationCommands;
+using RecipesWpfApp.Commands.RecipeCommands;
 using RecipesWpfApp.Commands.RecipesListCommands;
 using RecipesWpfApp.Models;
+using RecipesWpfApp.Services;
 using RecipesWpfApp.Stores;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,8 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        public NavigationBarViewModel NavigationBarViewModel { get; }
+
         private readonly NavigationStore _navigationStore;
 
         public event EventHandler SelectionChangedRecipes;
@@ -78,13 +81,22 @@ namespace RecipesWpfApp.ViewModels
         public ICommand SelectRecipeCommand { get; }
         public ICommand LoadSavedRecipesCommand { get; }
 
-        public RecipesBookViewModel(NavigationStore navigationStore)
+
+        public RecipesBookViewModel(NavigationBarViewModel navigationBarViewModel,
+            NavigationStore navigationStore)
         {
+            NavigationBarViewModel = navigationBarViewModel;
             _navigationStore = navigationStore;
             _recipes = new List<RecipeDetails>();
             SearchRecipesCommand = new SearchSavedRecipesCommand(this);
-            SelectRecipeCommand = new NavigateToSelectedRecipeCommand(_navigationStore, this);
             LoadSavedRecipesCommand = new LoadSavedRecipesCommand(this);
+
+            ParameterNavigationService<RecipeDetails, SingleRecipeViewModel> navigationService =
+                new ParameterNavigationService<RecipeDetails, SingleRecipeViewModel>(navigationStore,
+                (parameter)=>new SingleRecipeViewModel(navigationBarViewModel,parameter, true, navigationStore));
+
+            SelectRecipeCommand = new SelectSavedRecipeCommand(this, navigationService);
+
         }
 
     }

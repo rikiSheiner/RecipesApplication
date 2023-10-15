@@ -28,7 +28,6 @@ namespace RecipesWpfApp.ViewModels
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 var response = await _httpClient.PostAsync("/Recipe", content);
-                //var respnseGet = await _httpClient.GetAsync("recipes", );
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)

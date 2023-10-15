@@ -22,13 +22,13 @@ namespace RecipesWpfApp.ViewModels
                 if (_isNotSaved != value)
                 {
                     _isNotSaved = value;
-                    //IsSaved = !_isNotSaved;
+                    IsSaved = !_isNotSaved;
                     OnPropertyChanged(nameof(IsNotSaved));
                 }
             }
         }
 
-        /*private bool _isSaved;
+        private bool _isSaved;
         public bool IsSaved
         {
             get { return _isSaved; }
@@ -40,7 +40,7 @@ namespace RecipesWpfApp.ViewModels
                     OnPropertyChanged(nameof(IsSaved));
                 }
             }
-        }*/
+        }
 
         private RecipeDetails _recipeDetails;
         public RecipeDetails RecipeDetails
@@ -85,6 +85,9 @@ namespace RecipesWpfApp.ViewModels
         }
 
         private JewishHolidayViewModel _jewishHolidayViewModel;
+        private RecipeDetails parameter;
+        private NavigationStore navigationStore;
+
         public JewishHolidayViewModel JewishHolidayViewModel
         {
             get { return _jewishHolidayViewModel; }
@@ -103,12 +106,16 @@ namespace RecipesWpfApp.ViewModels
         public ICommand UpdateRecipeDetailsCommand { get; }
 
         private readonly NavigationStore _navigationStore;
+        public NavigationBarViewModel NavigationBarViewModel { get; }
 
-        public SingleRecipeViewModel(RecipeDetails recipeDetails, bool isSaved,
+        public SingleRecipeViewModel(NavigationBarViewModel navigationBarViewModel,
+            RecipeDetails recipeDetails, bool isSaved,
             NavigationStore navigationStore)
         {
+            NavigationBarViewModel = navigationBarViewModel;
             RecipeDetails = recipeDetails;
             IsNotSaved = !isSaved;
+            IsSaved = isSaved;
 
             SaveRecipeCommand = new SaveRecipeCommand(this);
 
@@ -120,5 +127,6 @@ namespace RecipesWpfApp.ViewModels
             _jewishHolidayViewModel = new JewishHolidayViewModel(this, _navigationStore);
 
         }
+
     }
 }

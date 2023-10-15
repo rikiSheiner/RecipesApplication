@@ -57,29 +57,33 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\ImagesCommands\BrowseImageCommand.cs" />
+    <Compile Include="Commands\ImagesCommands\FindRecipeImagePath.cs" />
     <Compile Include="Commands\ImagesCommands\LoadImagesOfRecipeCommand.cs" />
     <Compile Include="Commands\ImagesCommands\UploadImageCommand.cs" />
     <Compile Include="Commands\JewishHolidayCommands\AddHolidayStateCommand.cs" />
     <Compile Include="Commands\JewishHolidayCommands\AddJewishHolidayCommand.cs" />
     <Compile Include="Commands\JewishHolidayCommands\LoadAllHolidaysCommand.cs" />
     <Compile Include="Commands\JewishHolidayCommands\LoadHolidaysOfRecipeCommands.cs" />
-    <Compile Include="Commands\JewishHolidayCommands\NavigateToHolidayDetailsCommand.cs" />
+    <Compile Include="Commands\JewishHolidayCommands\SelectJewishHolidayCommand.cs" />
+    <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Commands\NotesCommands\AddNoteCommand.cs" />
     <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\NotesCommands\CancelAddNoteCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\RecipeCommands\GetRecipeDetailsCommand.cs" />
+    <Compile Include="Commands\RecipeCommands\SelectRecipeCommand.cs" />
+    <Compile Include="Commands\RecipeCommands\SelectSavedRecipeCommand.cs" />
     <Compile Include="Commands\RecipesListCommands\LoadSavedRecipesCommand.cs" />
-    <Compile Include="Commands\NavigationCommands\NavigateRecipesBookCommand.cs" />
-    <Compile Include="Commands\NavigationCommands\NavigateSearchRecipeCommand.cs" />
     <Compile Include="Commands\NotesCommands\SetAddNoteContentCommand.cs" />
     <Compile Include="Commands\ObservableObject.cs" />
-    <Compile Include="Commands\RateRecipeCommand.cs" />
+    <Compile Include="Commands\RecipeCommands\RateRecipeCommand.cs" />
     <Compile Include="Commands\RecipeCommands\SaveRecipeCommand.cs" />
     <Compile Include="Commands\NotesCommands\RemoveNoteCommand.cs" />
     <Compile Include="Commands\RecipesListCommands\SearchRecipesCommand.cs" />
     <Compile Include="Commands\RecipesListCommands\SearchSavedRecipesCommand.cs" />
-    <Compile Include="Commands\NavigationCommands\NavigateToSelectedRecipeCommand.cs" />
+    <Compile Include="Components\NavigationBar.xaml.cs">
+      <DependentUpon>NavigationBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BoolToBrushConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\RatingToBoolConverter .cs" />
@@ -94,6 +98,8 @@
     <Compile Include="Models\RecipeInHoliday.cs" />
     <Compile Include="Models\RecipeList.cs" />
     <Compile Include="Models\RecipeModel.cs" />
+    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\ParameterNavigationService.cs" />
     <Compile Include="StepNumberConverter.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="UserControls\Rating.xaml.cs">
@@ -107,6 +113,7 @@
     <Compile Include="ViewModels\JewishHolidayDetailsViewModel.cs" />
     <Compile Include="ViewModels\JewishHolidayViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\NavigationBarViewModel.cs" />
     <Compile Include="ViewModels\NotesViewModel.cs" />
     <Compile Include="ViewModels\ImagesViewModel.cs" />
     <Compile Include="ViewModels\RecipesBookViewModel.cs" />
@@ -175,6 +182,10 @@
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\NavigationBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Rating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,7 +293,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="old-version\" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack">
       <Version>1.11.54</Version>

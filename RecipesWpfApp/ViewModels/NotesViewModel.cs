@@ -84,8 +84,9 @@ namespace RecipesWpfApp.ViewModels
             IsInAdding = false;
 
             Notes = new ObservableCollection<Note>();
-            foreach(var item in _singleRecipeViewModel.RecipeDetails.Notes)
+            foreach (var item in _singleRecipeViewModel.RecipeDetails.Notes)
                 Notes.Add(item);
+
 
             SetAddNoteContentCommand = new SetAddNoteContentCommand(this);
             AddNoteCommand = new AddNoteCommand(this);

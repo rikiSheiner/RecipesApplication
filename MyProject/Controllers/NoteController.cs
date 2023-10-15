@@ -49,7 +49,7 @@ namespace MyProject.Controllers
         public async Task<ActionResult<List<Note>>> GetNote(int recipeId)
         {
 
-            var notes = _context.Note.ToListAsync().Result.FindAll(e => e.RecipeId == recipeId);
+            var notes =  _context.Note.ToListAsync().Result.FindAll(e => e.RecipeId == recipeId);
 
             if (notes == null)
             {

@@ -4,32 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RecipesWpfApp.Views"
+             xmlns:components="clr-namespace:RecipesWpfApp.Components"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="450">
-    <Grid  >
+
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-
-            <RowDefinition Height="*"></RowDefinition>
-
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1"
+
+        <components:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}"/>
+
+        <Grid  Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+
+                <RowDefinition Height="*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="1"
                    Text="Best Recipes!"
                    FontSize="40" Margin="101,57,89,13"
                    />
 
-        <Button Grid.Row="3"
+            <Button Grid.Row="3"
                 Content="Get Started"
                 FontSize="15"
                 Height="70"
                 Width="200"
-                Command="{Binding NavigateSearchRecipeCommand}"
+                Command="{Binding NavigateSearchRecipesCommand}"
                 ></Button>
-        <Button Grid.Row="4"
+            <Button Grid.Row="4"
                 Content="Private Zone"
                 FontSize="15"
                 Height="70"
@@ -38,5 +48,8 @@
 
                 ></Button>
 
+        </Grid>
     </Grid>
+    
+    
 </UserControl>
