@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RecipesWpfApp.Views"
+             xmlns:commands="clr-namespace:RecipesWpfApp.Commands"
+             xmlns:converters="clr-namespace:RecipesWpfApp.Converters"
              xmlns:components="clr-namespace:RecipesWpfApp.Components"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="450">
-
-    <Grid>
+    
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -23,33 +25,44 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-
                 <RowDefinition Height="*"></RowDefinition>
-
             </Grid.RowDefinitions>
+            
             <TextBlock Grid.Row="1"
-                   Text="Best Recipes!"
-                   FontSize="40" Margin="101,57,89,13"
-                   />
+                       Style="{StaticResource TextBlockStyle}"
+                       FontSize="40"
+                       Margin="95,17,95,46"
+                       Grid.RowSpan="2"
+                       Text="Riki's Kitchen&#x0a;   Creations">
+            </TextBlock>
 
             <Button Grid.Row="3"
-                Content="Get Started"
-                FontSize="15"
-                Height="70"
-                Width="200"
-                Command="{Binding NavigateSearchRecipesCommand}"
-                ></Button>
+                    Style="{StaticResource ButtonStyle}"
+                    Content="Get Started"
+                    FontSize="20"
+                    Height="60"
+                    Width="150"
+                    Foreground="white"
+                    FontWeight="Bold"
+                    Command="{Binding NavigateSearchRecipesCommand}"
+                    Template="{StaticResource RoundedButtonTemplate}"
+                    >
+            </Button>
             <Button Grid.Row="4"
-                Content="Private Zone"
-                FontSize="15"
-                Height="70"
-                Width="200"
-                Command="{Binding NavigateRecipesBookCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Content="Private Zone"
+                    FontSize="20"
+                    Height="60"
+                    Width="150"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    Command="{Binding NavigateRecipesBookCommand}"
+                    Template="{StaticResource RoundedButtonTemplate}">
 
-                ></Button>
+            </Button>
 
         </Grid>
     </Grid>
-    
-    
+
+
 </UserControl>

@@ -8,6 +8,7 @@
         xmlns:views="clr-namespace:RecipesWpfApp.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="450">
+
     <Grid>
         <ContentControl Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>

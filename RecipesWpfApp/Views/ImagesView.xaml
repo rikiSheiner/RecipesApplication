@@ -20,10 +20,12 @@
 
         <StackPanel>
             <Button x:Name="BrowseButton"  Content="click to add image" Height="30" Width="120"
+                    Style="{StaticResource ButtonStyle}"
                     Command="{Binding BrowseImageCommand}"></Button>
             <Image Source="{Binding BitmapImageToAdd}" Height="300" Width="300"
                    Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"></Image>
             <Button x:Name="UploadButton"  Content="Add" Height="30" Width="80"
+                    Style="{StaticResource ButtonStyle}"
                     Command="{Binding UploadImageCommand}"
                     Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}">
             </Button>

@@ -8,10 +8,15 @@
              d:DesignHeight="700" d:DesignWidth="450">
     <Grid>
         <StackPanel>
-            <TextBlock Text="{Binding JewishHoliday.Name}"></TextBlock>
-            <TextBlock Text="{Binding JewishHoliday.Description}"></TextBlock>
-            <TextBlock Text="{Binding JewishHoliday.Date}"></TextBlock>
-            <TextBlock Text="{Binding JewishHoliday.Hdate}"></TextBlock>
+            <TextBlock Text="{Binding JewishHoliday.Name}" 
+                       Style="{StaticResource TextBlockStyle}">
+            </TextBlock>
+            <TextBlock Text="{Binding JewishHoliday.Description}"
+                       Style="{StaticResource TextBlockStyle}"></TextBlock>
+            <TextBlock Text="{Binding JewishHoliday.Date}"
+                       Style="{StaticResource TextBlockStyle}"></TextBlock>
+            <TextBlock Text="{Binding JewishHoliday.Hdate}"
+                       Style="{StaticResource TextBlockStyle}"></TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

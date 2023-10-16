@@ -36,9 +36,11 @@
             <Grid>
 
                 <Button HorizontalAlignment="Right" Margin="0,10,0,0" Width="50" Content="add"
+                        Style="{StaticResource ButtonStyle}"
                         Command="{Binding AddNoteCommand}" 
                         Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
                 <Button HorizontalAlignment="Right" Margin="0,10,60,0" Width="50" Content="cancel"
+                        Style="{StaticResource ButtonStyle}"
                         Command="{Binding CancelAddNoteCommand}" 
                         Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
             </Grid>

@@ -16,7 +16,7 @@ namespace MyProject.Models
         public int Num_Servings { get; set; }
         public int Ranking { get; set; }
         public List<Note> Notes { get; set; }
-        //public List<FoodImage> FoodImage { get; set; }
+        public List<FoodImage> FoodImage { get; set; }
         //public List<JewishHoliday> UsedInHolidays { get; set; }
 
         

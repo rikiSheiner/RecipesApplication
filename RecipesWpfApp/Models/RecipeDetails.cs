@@ -178,6 +178,20 @@ namespace RecipesWpfApp.Models
         }
         */
 
+        private List<FoodImage> _foodImage;
+        public List<FoodImage> FoodImage
+        {
+            get { return _foodImage; }
+            set
+            {
+                if(_foodImage != value)
+                {
+                    _foodImage = value;
+                    OnPropertyChanged(nameof(FoodImage));
+                }
+            }
+        }
+
         private string _imagePath;
         public string ImagePath
         {
@@ -196,9 +210,11 @@ namespace RecipesWpfApp.Models
         public RecipeDetails()
         {
             _notes = new List<Note>();
-            //_images = new List<IFormFile>();
             _instructions = new List<Instruction>();
             _ingredients = new List<Ingredient>();
+            _foodImage = new List<FoodImage>();
+
+            ImagePath = "C:/Users/1/Source/Repos/MyFinalProject2023/RecipesWpfApp/BackgroundImages/default-food-image.png";
             //_jewishHolidays = new List<JewishHolidayToAdd> ();
         }
     }

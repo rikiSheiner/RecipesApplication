@@ -55,5 +55,25 @@ namespace RecipesWpfApp.Models
                 }
             }
         }
+
+        public const string DefaultImagePath = "C:/Users/1/Source/Repos/MyFinalProject2023/RecipesWpfApp/BackgroundImages/default-food-image.png";
+
+        private string _imagePath;
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set { 
+                    if(_imagePath != value)
+                    {
+                        _imagePath = value;
+                        OnPropertyChanged(nameof(ImagePath));
+                    } 
+                }
+        }
+
+        public Recipe()
+        {
+            ImagePath = DefaultImagePath;
+        }
     }
 }

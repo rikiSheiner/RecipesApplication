@@ -6,28 +6,32 @@
              xmlns:local="clr-namespace:RecipesWpfApp.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="{StaticResource PrimaryColorBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="80"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Text="Best Recipes"></TextBlock>
+        <TextBlock Grid.Column="0"
+                   Style="{StaticResource TextBlockStyle}"
+                   Foreground="White"
+                   Text="Best Recipes"
+                   ></TextBlock>
 
-        <Button 
+        <Button Style="{StaticResource ButtonStyle}"
             Grid.Column="1"
             Command="{Binding NavigateHomeCommand}"
             Content="Home"
             />
         
-        <Button 
+        <Button Style="{StaticResource ButtonStyle}"
             Grid.Column="2"
             Command="{Binding NavigateSearchRecipesCommand}"
             Content="Search Recipes"
             />
-        <Button 
+        <Button Style="{StaticResource ButtonStyle}"
             Grid.Column="3"
             Command="{Binding NavigateRecipesBookCommand}"
             Content="Private Zone"

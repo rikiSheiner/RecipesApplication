@@ -70,7 +70,6 @@ namespace RecipesWpfApp.Models
             }
         }
 
-        
         private IFormFile _imgaeFile;
         public IFormFile ImageFile
         {
@@ -99,11 +98,9 @@ namespace RecipesWpfApp.Models
             }
         }
 
-        
         public FoodImage()
         {
             ImageId = CounterFoodImages++;
         }
-
     }
 }

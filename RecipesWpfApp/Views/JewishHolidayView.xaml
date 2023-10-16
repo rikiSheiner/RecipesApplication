@@ -19,7 +19,8 @@
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <StackPanel>
-            <TextBlock Text="Recommended for preparation on:"></TextBlock>
+            <TextBlock Text="Recommended for preparation on:"
+                       Style="{StaticResource TextBlockStyle}"></TextBlock>
             <ListView ItemsSource="{Binding Holidays}" SelectedItem="{Binding SelectedJewishHoliday}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
@@ -28,15 +29,18 @@
                 </i:Interaction.Triggers>
             </ListView>
 
-            <Button Content="Click to Add Holiday" Width="200" 
+            <Button Content="Click to Add Holiday" Width="200"
+                    Style="{StaticResource ButtonStyle}"
                     Command="{Binding AddHolidayStateCommand}">
             </Button>
             <TextBlock Text="Choose the best holiday to cook this recipe"
+                       Style="{StaticResource TextBlockStyle}"
                        Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
             <ComboBox Width="200" ItemsSource="{Binding AllHolidays}"
                       SelectedItem="{Binding JewishHolidayToAdd}"
                       Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></ComboBox>
             <Button Content="OK" Width="40" Command="{Binding AddJewishHolidayCommand}"
+                    Style="{StaticResource ButtonStyle}"
                     Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
         </StackPanel>
         
