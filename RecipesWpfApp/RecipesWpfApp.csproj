@@ -94,6 +94,7 @@
     <Compile Include="Converters\ElementConverter.cs" />
     <Compile Include="Converters\RatingToBoolConverter .cs" />
     <Compile Include="Converters\StepNumberConverter.cs" />
+    <Compile Include="Converters\ValueToVisibilityConverter.cs" />
     <Compile Include="Models\ApiModel.cs" />
     <Compile Include="Models\FoodImage.cs" />
     <Compile Include="Models\Ingredient.cs" />
@@ -344,6 +345,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="BackgroundImages\icon-camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\add-image-icon.png" />
+    <Resource Include="Icons\add-circle-icon.png" />
+    <Resource Include="Icons\home-icon.png" />
+    <Resource Include="Icons\search-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\add-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

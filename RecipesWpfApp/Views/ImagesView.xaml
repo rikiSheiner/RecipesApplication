@@ -5,11 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RecipesWpfApp.Views"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:converters="clr-namespace:RecipesWpfApp.Converters"
+             xmlns:converters="clr-namespace:RecipesWpfApp.Converters" 
+             xmlns:viewmodels="clr-namespace:RecipesWpfApp.ViewModels" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
     <UserControl.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:ValueToVisibilityConverter x:Key="ValueToVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -20,9 +22,11 @@
 
         <StackPanel>
 
-            <Image Source="{Binding SelectedImage.ImagePath}" Stretch="Uniform" Height="300" Width="300"/>
+            <Image Source="{Binding SelectedImage.ImagePath}" Stretch="Uniform" Height="300" Width="300"
+                   Visibility="{Binding SelectedImage, Converter={StaticResource ValueToVisibilityConverter}}"/>
 
-            <ListBox ItemsSource="{Binding Images}" SelectedItem="{Binding SelectedImage}" HorizontalAlignment="Center">
+            <ListBox ItemsSource="{Binding Images}" SelectedItem="{Binding SelectedImage}" HorizontalAlignment="Center"
+                     Visibility="{Binding Images, Converter={StaticResource ValueToVisibilityConverter}}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -35,17 +39,13 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Width="100" Height="100" Command="{Binding BrowseImageCommand}"
-                    Style="{StaticResource ButtonStyle}">
+            <Button Width="80" Height="80" Command="{Binding BrowseImageCommand}" Style="{StaticResource ButtonStyle2}">
                 <StackPanel>
-                    <Image Source="{Binding IconCameraPath}" Width="50" Height="50" />
+                    <Image Source="C:\Users\1\Source\Repos\MyFinalProject2023\RecipesWpfApp\Icons\add-image-icon.png" Width="40" Height="40" />
                     <TextBlock Text="Add Photo" />
                 </StackPanel>
             </Button>
-
-            <Button x:Name="BrowseButton"  Content="Add Photo" Height="30" Width="120"
-                    Style="{StaticResource ButtonStyle}"
-                    Command="{Binding BrowseImageCommand}"></Button>
+            
             <Image Source="{Binding BitmapImageToAdd}" Height="300" Width="300"
                    Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"></Image>
             <Button x:Name="UploadButton"  Content="Add" Height="30" Width="80"

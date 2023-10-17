@@ -11,7 +11,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="450">
     <UserControl.Resources>
-        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
+        <converters:ValueToVisibilityConverter x:Key="ValueToVisibilityConverter" />
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
 
     <Grid>
@@ -67,7 +68,7 @@
 
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock x:Name="cookTimeTB" Text="Cook Time: " Margin="20,15,0,0" FontWeight="Bold" FontSize="15"
-                                   ></TextBlock>
+                                   Visibility="{Binding RecipeDetails.Cook_Time_Minutes, Converter={StaticResource ValueToVisibilityConverter} }"></TextBlock>
                         <TextBlock x:Name="cookTimeValueTB" Text="{Binding RecipeDetails.Cook_Time_Minutes}" Margin="20,15,0,0" FontSize="15" ></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" >

@@ -105,7 +105,19 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
-        public string IconCameraPath { get; }
+        private string _iconCameraPath;
+        public string IconCameraPath
+        {
+            get { return _iconCameraPath; }
+            set
+            {
+                if(_iconCameraPath != value)
+                {
+                    _iconCameraPath = value;
+                    OnPropertyChanged(nameof(IconCameraPath));
+                }
+            }
+        }
 
         // The URL of the api of the images 
         public string ApiImageUrl { get; }
