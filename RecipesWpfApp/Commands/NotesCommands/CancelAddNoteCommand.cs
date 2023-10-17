@@ -18,7 +18,7 @@ namespace RecipesWpfApp.Commands.NotesCommands
         }
         public override void Execute(object parameter)
         {
-            _notesViewModel.NoteToAdd = "click to add note";
+            _notesViewModel.NoteToAdd = _notesViewModel.DefaultNoteText;
             _notesViewModel.IsInAdding = false;
         }
     }

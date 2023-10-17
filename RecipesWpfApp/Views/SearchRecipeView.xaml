@@ -18,8 +18,7 @@
         <components:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}"/>
 
         <Grid Grid.Row="1" >
-            <ScrollViewer HorizontalScrollBarVisibility="Auto">
-
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBox x:Name="SearchTextBox" Width="200" Text="{Binding Query, Mode=TwoWay}" />
@@ -28,7 +27,7 @@
                                 Command="{Binding SearchRecipesCommand}"/>
                     </StackPanel>
 
-                    
+
                     <ListBox ItemsSource="{Binding Recipes}"
                              SelectedItem="{Binding SelectedRecipe}">
                         <i:Interaction.Triggers>
@@ -42,13 +41,15 @@
                                 <StackPanel>
                                     <Image Source="{Binding ImagePath}" HorizontalAlignment="Left" Width="100" Height="100"/>
                                     <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Description}" 
+                                               TextWrapping="Wrap"
+                                               />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    
-                    
+
+
                 </StackPanel>
             </ScrollViewer>
         </Grid>

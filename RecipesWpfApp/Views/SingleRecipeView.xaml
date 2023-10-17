@@ -21,74 +21,74 @@
         </Grid.RowDefinitions>
 
         <components:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}"/>
-        
         <Grid  Grid.Row="1">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Loaded">
                     <i:InvokeCommandAction Command="{Binding LoadSingleRecipeCommand}"></i:InvokeCommandAction>
                 </i:EventTrigger>
+                <i:EventTrigger EventName="Unloaded">
+                    <i:InvokeCommandAction Command="{Binding UpdateRecipeDetailsCommand}"></i:InvokeCommandAction>
+                </i:EventTrigger>
             </i:Interaction.Triggers>
-            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
-                    <TextBlock x:Name="nameTB" Text="{Binding RecipeDetails.Name}" Margin="20,20,0,0" FontSize="30" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="descriptionTB" Text="{Binding RecipeDetails.Description}" Margin="20,20,0,0" FontSize="18"></TextBlock>
-                    <StackPanel Margin="50" Orientation="Horizontal">
-                        <TextBlock Foreground="RosyBrown" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontFamily="Arial">Please Rate It</TextBlock>
-                        <local:Rating x:Name="starsRating" Height="60" Width="100" VerticalAlignment="Center" Margin="0,80,0,79" />
+                    <TextBlock x:Name="nameTB" Text="{Binding RecipeDetails.Name}" Margin="20,20,0,0" FontSize="30" FontWeight="Bold"
+                               Style="{StaticResource TextBlockStyle}" TextWrapping="Wrap"
+                               HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock x:Name="descriptionTB" 
+                               Text="{Binding RecipeDetails.Description}"
+                               TextWrapping="Wrap"
+                               Margin="20,20,0,0"
+                               FontWeight="SemiBold"
+                               FontSize="14"></TextBlock>
+
+                    <StackPanel Orientation="Horizontal" Margin="20,30,0,0">
+                        <Button x:Name="saveBtn"
+                                Content="Save"
+                                Width="80"
+                                Height="30"
+                                Style="{StaticResource ButtonStyle}"
+                                Command="{Binding SaveRecipeCommand}"
+                                Visibility="{Binding IsNotSaved, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
+                        <Button Content="Rate ★"
+                                Width="80"
+                                Height="30"
+                                Style="{StaticResource ButtonStyle2}"></Button>
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal">
+                        <TextBlock Foreground="RosyBrown" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20" FontFamily="Arial">Please Rate It</TextBlock>
+                        <local:Rating x:Name="starsRating" Height="60" Width="100" VerticalAlignment="Center" Margin="0,30,0,30" />
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="cookTimeTB" Text="Cook Time: " Margin="20,40,0,0" FontWeight="Bold" FontSize="16"></TextBlock>
-                        <TextBlock x:Name="cookTimeValueTB" Text="{Binding RecipeDetails.Cook_Time_Minutes}" Margin="20,40,0,0" FontSize="16" ></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="numServingsTB" Text="Servings: " Margin="20" FontWeight="Bold" FontSize="16"></TextBlock>
-                        <TextBlock x:Name="numServingsValueTB" Text="{Binding RecipeDetails.Num_Servings}" Margin="20" FontSize="16" ></TextBlock>
-                    </StackPanel>
-                    <TextBlock x:Name="ingredientsTB" Text="Ingredients" Margin="20,40,0,0" FontSize="20"></TextBlock>
-                    <ListView x:Name="ingredientsLV" ItemsSource="{Binding RecipeDetails.Ingredients}" Margin="20,20,0,0" FontSize="14"
-                          BorderThickness="0">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="Margin" Value="0,5,0,5" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                    </ListView>
-                    <TextBlock x:Name="instructionsTB" Text="Instructions" Margin="20,40,0,0" FontSize="20"></TextBlock>
-                    <ListView x:Name="instructionLV" ItemsSource="{Binding RecipeDetails.Instructions}" Margin="20,20,0,0" FontSize="14"
-                          BorderThickness="0">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="Margin" Value="0,5,0,5" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Text}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
 
-
-                    <Button x:Name="saveBtn" Content="save" Margin="20,20,0,0"
-                        Style="{StaticResource ButtonStyle}" FontSize="20" 
-                        Command="{Binding SaveRecipeCommand}"
-                        Visibility="{Binding IsNotSaved, Converter={StaticResource BoolToVisibilityConverter}}">
-                    </Button>
-
-                    <ContentControl Content="{Binding ImagesViewModel}" 
+                    <ContentControl Content="{Binding ImagesViewModel}" Margin="20"
                                 Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                    <ContentControl Content="{Binding NotesViewModel}"
+
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock x:Name="cookTimeTB" Text="Cook Time: " Margin="20,15,0,0" FontWeight="Bold" FontSize="15"
+                                   ></TextBlock>
+                        <TextBlock x:Name="cookTimeValueTB" Text="{Binding RecipeDetails.Cook_Time_Minutes}" Margin="20,15,0,0" FontSize="15" ></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock x:Name="numServingsTB" Text="Servings: " Margin="20,15,0,0" FontWeight="Bold" FontSize="15"></TextBlock>
+                        <TextBlock x:Name="numServingsValueTB" Text="{Binding RecipeDetails.Num_Servings}" Margin="20,15,0,0"  FontSize="15" ></TextBlock>
+                    </StackPanel>
+
+                    <local:IngredientsView DataContext="{Binding RecipeDetails}" Margin="20,50,20,0"></local:IngredientsView>
+       
+                    <local:InstructionsView DataContext="{Binding RecipeDetails}" Margin="20,50,20,0"></local:InstructionsView>
+
+
+                    <ContentControl Content="{Binding NotesViewModel}" Margin="20,50,20,0"
                                 Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                    <ContentControl Content="{Binding JewishHolidayViewModel}"
+
+                    
+                    <ContentControl Content="{Binding JewishHolidayViewModel}" Margin="20"
                                 Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}"/>
 
                 </StackPanel>
-
             </ScrollViewer>
-
         </Grid>
     </Grid>
 </UserControl>

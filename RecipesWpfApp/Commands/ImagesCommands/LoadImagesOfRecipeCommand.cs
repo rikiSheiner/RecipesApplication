@@ -38,6 +38,12 @@ namespace RecipesWpfApp.Commands.ImagesCommands
                 {
                     string json = reader.ReadToEnd();
                     _imagesViewModel.Images = JsonConvert.DeserializeObject<List<FoodImage>>(json);
+
+
+                    if (_imagesViewModel.Images.Count > 0)
+                    {
+                        _imagesViewModel.SelectedImage = _imagesViewModel.Images[0];
+                    }
                 }
             }
             else

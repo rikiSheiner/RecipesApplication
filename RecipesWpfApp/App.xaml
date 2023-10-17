@@ -3,37 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RecipesWpfApp"
              xmlns:viewModels="clr-namespace:RecipesWpfApp.ViewModels"
-             xmlns:views="clr-namespace:RecipesWpfApp.Views"
-             >
+             xmlns:views="clr-namespace:RecipesWpfApp.Views">
     <Application.Resources>
-        <Color x:Key="PrimaryColor">#FF3D00</Color>
-        <Color x:Key="SecondaryColor">#FFFFFF</Color>
-        <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}" />
-        <SolidColorBrush x:Key="SecondaryColorBrush" Color="{StaticResource SecondaryColor}" />
 
-        <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="Button">
-            <Border CornerRadius="20" Padding="5"
+
+        <ResourceDictionary>
+
+            <Style x:Key="StarToggleButtonStyle" TargetType="ToggleButton">
+                <Setter Property="Content" Value="★" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Foreground" Value="Gold" />
+                    </Trigger>
+                    <Trigger Property="IsChecked" Value="False">
+                        <Setter Property="Foreground" Value="Black" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+
+            <Color x:Key="PrimaryColor">#FF3D00</Color>
+            <Color x:Key="SecondaryColor">#FFFFFF</Color>
+            <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}" />
+            <SolidColorBrush x:Key="SecondaryColorBrush" Color="{StaticResource SecondaryColor}" />
+
+            <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="Button">
+                <Border CornerRadius="20" Padding="5"
                      Background="{StaticResource PrimaryColorBrush}"
                             BorderBrush="{StaticResource PrimaryColorBrush}"
                             BorderThickness="1">
-                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Border>
-        </ControlTemplate>
-        
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Foreground" Value="{StaticResource SecondaryColorBrush}"></Setter>
-            <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"></Setter>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
-            <Setter Property="BorderBrush" Value="{StaticResource PrimaryColorBrush}"></Setter>
-        </Style>
-        
-        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource PrimaryColorBrush}"></Setter>
-            <Setter Property="FontWeight" Value="DemiBold"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-            <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        </Style>
-        
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+            </ControlTemplate>
+
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="Foreground" Value="{StaticResource SecondaryColorBrush}"></Setter>
+                <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColorBrush}"></Setter>
+            </Style>
+            <Style x:Key="ButtonStyle2" TargetType="Button">
+                <Setter Property="Background" Value="Beige"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColorBrush}" />
+                <Setter Property="BorderBrush" Value="Beige"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+
+            </Style>
+
+            <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColorBrush}"></Setter>
+                <Setter Property="FontWeight" Value="DemiBold"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            </Style>
+
+
+        </ResourceDictionary>
     </Application.Resources>
     
 </Application>

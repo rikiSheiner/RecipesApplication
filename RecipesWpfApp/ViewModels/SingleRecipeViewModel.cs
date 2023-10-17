@@ -118,7 +118,7 @@ namespace RecipesWpfApp.ViewModels
             IsSaved = isSaved;
 
             SaveRecipeCommand = new SaveRecipeCommand(this);
-
+            UpdateRecipeDetailsCommand = new UpdateRecipeDetailsCommand(this);
 
             _navigationStore = navigationStore;
 

@@ -17,7 +17,6 @@
         </Grid.RowDefinitions>
 
         <components:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}"/>
-
         <Grid  Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -33,7 +32,8 @@
                        FontSize="40"
                        Margin="95,17,95,46"
                        Grid.RowSpan="2"
-                       Text="Riki's Kitchen&#x0a;   Creations">
+                       Text="Riki's Kitchen&#x0a;Creations"
+                       TextAlignment="Center">
             </TextBlock>
 
             <Button Grid.Row="3"

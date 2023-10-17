@@ -53,7 +53,7 @@ namespace RecipesWpfApp.Commands.NotesCommands
                 }
             }
 
-            _notesViewModel.NoteToAdd = "click to add note";
+            _notesViewModel.NoteToAdd = _notesViewModel.DefaultNoteText;
             _notesViewModel.IsInAdding = false;
 
         }

@@ -13,20 +13,22 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel>
-            <TextBlock x:Name="notesTB" Text="Notes" Margin="20,40,0,0" FontSize="20"></TextBlock>
+            <TextBlock x:Name="notesTB" Text="Reviews"  FontSize="25"
+                       FontWeight="Bold"></TextBlock>
 
-
-            <ListView x:Name="notesLV" ItemsSource="{Binding Notes}" Margin="20,20,0,0" FontSize="14">
+            <ListView x:Name="notesLV" ItemsSource="{Binding Notes}" 
+                      FontSize="14" Foreground="Black" BorderBrush="Transparent" BorderThickness="0"
+                      Margin="0,20,0,0">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="Margin" Value="0,5,0,5" />
+                        <Setter Property="Margin" Value="5" />
                     </Style>
                 </ListView.ItemContainerStyle>
-                
-            </ListView>
-            
 
-            <TextBox Text="{Binding NoteToAdd}" Margin="20,20,0,0"  >
+            </ListView>
+
+
+            <TextBox Text="{Binding NoteToAdd}" Margin="5,20,0,0" TextWrapping="Wrap" Height="80">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
                         <i:InvokeCommandAction Command="{Binding SetAddNoteContentCommand}"></i:InvokeCommandAction>
@@ -35,18 +37,17 @@
             </TextBox>
             <Grid>
 
-                <Button HorizontalAlignment="Right" Margin="0,10,0,0" Width="50" Content="add"
+                <Button HorizontalAlignment="Right" Margin="0,10,20,0" Width="50" Content="SUBMIT"
                         Style="{StaticResource ButtonStyle}"
                         Command="{Binding AddNoteCommand}" 
-                        Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
-                <Button HorizontalAlignment="Right" Margin="0,10,60,0" Width="50" Content="cancel"
-                        Style="{StaticResource ButtonStyle}"
+                        Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"
+                        ></Button>
+                <Button HorizontalAlignment="Right" Margin="0,10,75,0" Width="50" Content="CANCEL"
+                        Style="{StaticResource ButtonStyle2}"
                         Command="{Binding CancelAddNoteCommand}" 
-                        Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
+                        Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"
+                        ></Button>
             </Grid>
-
         </StackPanel>
-        
-        
     </Grid>
 </UserControl>

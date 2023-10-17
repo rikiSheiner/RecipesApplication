@@ -58,15 +58,17 @@ namespace RecipesWpfApp.ViewModels
         public ObservableCollection<Note> Notes
         {
             get { return _notes; }
-            set 
-            { 
-                if(_notes != value)
+            set
+            {
+                if (_notes != value)
                 {
                     _notes = value;
                     OnPropertyChanged(nameof(Notes));
                 }
             }
         }
+
+        public string DefaultNoteText { get; }
 
         private SingleRecipeViewModel _singleRecipeViewModel;
 
@@ -79,8 +81,11 @@ namespace RecipesWpfApp.ViewModels
         public NotesViewModel(SingleRecipeViewModel singleRecipeViewModel)
         {
             _singleRecipeViewModel = singleRecipeViewModel;
+
+            DefaultNoteText = "What did you think about this recipe? Did you make any changes or notes?";
+
             RecipeId = _singleRecipeViewModel.RecipeDetails.Id;
-            NoteToAdd = "click to add note";
+            NoteToAdd = DefaultNoteText;
             IsInAdding = false;
 
             Notes = new ObservableCollection<Note>();

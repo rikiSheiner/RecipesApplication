@@ -74,6 +74,7 @@
     <Compile Include="Commands\RecipeCommands\GetRecipeDetailsCommand.cs" />
     <Compile Include="Commands\RecipeCommands\SelectRecipeCommand.cs" />
     <Compile Include="Commands\RecipeCommands\SelectSavedRecipeCommand.cs" />
+    <Compile Include="Commands\RecipeCommands\UpdateRecipeDetailsCommand.cs" />
     <Compile Include="Commands\RecipesListCommands\LoadSavedRecipesCommand.cs" />
     <Compile Include="Commands\NotesCommands\SetAddNoteContentCommand.cs" />
     <Compile Include="Commands\ObservableObject.cs" />
@@ -85,10 +86,14 @@
     <Compile Include="Components\NavigationBar.xaml.cs">
       <DependentUpon>NavigationBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\StarRatingControl.xaml.cs">
+      <DependentUpon>StarRatingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BoolToBrushConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\ElementConverter.cs" />
     <Compile Include="Converters\RatingToBoolConverter .cs" />
+    <Compile Include="Converters\StepNumberConverter.cs" />
     <Compile Include="Models\ApiModel.cs" />
     <Compile Include="Models\FoodImage.cs" />
     <Compile Include="Models\Ingredient.cs" />
@@ -185,6 +190,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Components\NavigationBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\StarRatingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,9 +335,15 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Rating">
+      <Version>1.0.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="BackgroundImages\default-food-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BackgroundImages\icon-camera.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

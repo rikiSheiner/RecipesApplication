@@ -22,8 +22,7 @@
                     <i:InvokeCommandAction Command="{Binding LoadSavedRecipesCommand}"></i:InvokeCommandAction>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <ScrollViewer HorizontalScrollBarVisibility="Auto">
-
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBox x:Name="SearchTextBox" Width="200" Text="{Binding Query, Mode=TwoWay}" />

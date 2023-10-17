@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipesWpfApp.Windows"
         xmlns:viewmodels="clr-namespace:RecipesWpfApp.ViewModels"
-        xmlns:views="clr-namespace:RecipesWpfApp.Views"
+        xmlns:views="clr-namespace:RecipesWpfApp.Views" 
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="450">
-
+    
     <Grid>
         <ContentControl Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
@@ -39,8 +39,8 @@
                 <DataTemplate DataType="{x:Type TypeName=viewmodels:JewishHolidayDetailsViewModel}">
                     <views:JewishHolidayDetailsView/>
                 </DataTemplate>
-
             </ContentControl.Resources>
         </ContentControl>
+
     </Grid>
 </Window>

@@ -7,13 +7,33 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
     <Grid>
-        <ListView x:Name="ingredientsLV" ItemsSource="{Binding Ingredients}" Margin="20" FontSize="14"
-                          BorderThickness="0">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Margin" Value="0,5,0,5" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+        <StackPanel>
+            <TextBlock x:Name="ingredientsTB" Text="Ingredients"  FontSize="25"
+                       FontWeight="Bold"></TextBlock>
+
+            <ListView ItemsSource="{Binding Ingredients}" FontSize="14" Foreground="Black" BorderBrush="Transparent" BorderThickness="0"
+                      Margin="0,20,0,0">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn Width="380">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="● " FontWeight="Bold" FontSize="12" VerticalAlignment="Center" Margin="5"/>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

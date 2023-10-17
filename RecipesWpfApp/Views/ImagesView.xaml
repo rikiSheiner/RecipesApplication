@@ -19,7 +19,31 @@
         </i:Interaction.Triggers>
 
         <StackPanel>
-            <Button x:Name="BrowseButton"  Content="click to add image" Height="30" Width="120"
+
+            <Image Source="{Binding SelectedImage.ImagePath}" Stretch="Uniform" Height="300" Width="300"/>
+
+            <ListBox ItemsSource="{Binding Images}" SelectedItem="{Binding SelectedImage}" HorizontalAlignment="Center">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding ImagePath}" Height="70" Width="70"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Width="100" Height="100" Command="{Binding BrowseImageCommand}"
+                    Style="{StaticResource ButtonStyle}">
+                <StackPanel>
+                    <Image Source="{Binding IconCameraPath}" Width="50" Height="50" />
+                    <TextBlock Text="Add Photo" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="BrowseButton"  Content="Add Photo" Height="30" Width="120"
                     Style="{StaticResource ButtonStyle}"
                     Command="{Binding BrowseImageCommand}"></Button>
             <Image Source="{Binding BitmapImageToAdd}" Height="300" Width="300"
@@ -30,21 +54,7 @@
                     Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}">
             </Button>
 
-            <ListView Name="imageListView" ItemsSource="{Binding Images}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Image" Width="150">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding ImagePath}" Width="100" Height="100"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
+            
             
         </StackPanel>
         

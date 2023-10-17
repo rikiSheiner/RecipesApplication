@@ -46,6 +46,22 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+
+        // The selected image to be shown in big size
+        private FoodImage _selectedImage;
+        public FoodImage SelectedImage
+        {
+            get { return _selectedImage; }
+            set
+            {
+                if (_selectedImage != value)
+                {
+                    _selectedImage = value;
+                    OnPropertyChanged(nameof(SelectedImage));
+                }
+            }
+        }
+
         private BitmapImage _bitmapImageToAdd;
         public BitmapImage BitmapImageToAdd
         {
@@ -89,6 +105,8 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        public string IconCameraPath { get; }
+
         // The URL of the api of the images 
         public string ApiImageUrl { get; }
 
@@ -109,6 +127,7 @@ namespace RecipesWpfApp.ViewModels
             ApiImageUrl = "https://localhost:7079/api/FoodImage";
 
             IsInAdding = false;
+            IconCameraPath = "C:/Users/1/Source/Repos/MyFinalProject2023/MyProject/BackgroundImages/icon-camera.png";
 
             LoadImagesOfRecipeCommand = new LoadImagesOfRecipeCommand(this);
             BrowseImageCommand = new BrowseImageCommand(this);
