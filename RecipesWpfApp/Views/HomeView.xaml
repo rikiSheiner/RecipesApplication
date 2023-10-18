@@ -32,7 +32,7 @@
                        Text="Welcome to my food blog,&#x0a; here you can find great recipes. "
                        Style="{StaticResource TextBlockStyle}" 
                        FontSize="18"
-                       Margin="0,10,0,20"
+                       Margin="0,10,0,10"
                        TextAlignment="Center"
                        VerticalAlignment="Top"></TextBlock>
                 <Image Height="250" Width="250"
@@ -41,12 +41,10 @@
                 <Button
                     Style="{StaticResource ButtonStyle}"
                     Content="Get Started"
-                    FontSize="20"
+                    FontSize="18"
                     Height="50"
-                    Width="150"
-                    Foreground="white"
-                    FontWeight="Bold"
-                    Margin="50"
+                    Width="170"
+                    Margin="0,0,0,10"
                     Command="{Binding NavigateSearchRecipesCommand}"
                     Template="{StaticResource RoundedButtonTemplate}"
                     >
@@ -54,14 +52,13 @@
                 <Button
                     Style="{StaticResource ButtonStyle}"
                     Content="Private Zone"
-                    FontSize="20"
+                    FontSize="18"
                     Height="50"
-                    Width="150"
-                    Margin="0"
-                    Foreground="White"
+                    Width="140"
                     FontWeight="Bold"
                     Command="{Binding NavigateRecipesBookCommand}"
-                    Template="{StaticResource RoundedButtonTemplate}">
+                    Template="{StaticResource RoundedButtonTemplate}"
+                    Visibility="Collapsed">
                 </Button>
 
                 
