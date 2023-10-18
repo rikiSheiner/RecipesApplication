@@ -18,48 +18,57 @@
 
         <components:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}"/>
         <Grid  Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            
-            <TextBlock Grid.Row="1"
+            <StackPanel>
+                <TextBlock 
                        Style="{StaticResource TextBlockStyle}"
                        FontSize="40"
-                       Margin="95,17,95,46"
                        Grid.RowSpan="2"
                        Text="Riki's Kitchen&#x0a;Creations"
-                       TextAlignment="Center">
-            </TextBlock>
+                       TextAlignment="Center"
+                       Margin="0,100,0,0">
+                </TextBlock>
 
-            <Button Grid.Row="3"
+                <TextBlock 
+                       Text="Welcome to my food blog,&#x0a; here you can find great recipes. "
+                       Style="{StaticResource TextBlockStyle}" 
+                       FontSize="18"
+                       Margin="0,10,0,20"
+                       TextAlignment="Center"
+                       VerticalAlignment="Top"></TextBlock>
+                <Image Height="250" Width="250"
+                       Source="C:\Users\1\Source\Repos\MyFinalProject2023\RecipesWpfApp\BackgroundImages\home-food1.png"></Image>
+                
+                <Button
                     Style="{StaticResource ButtonStyle}"
                     Content="Get Started"
                     FontSize="20"
-                    Height="60"
+                    Height="50"
                     Width="150"
                     Foreground="white"
                     FontWeight="Bold"
+                    Margin="50"
                     Command="{Binding NavigateSearchRecipesCommand}"
                     Template="{StaticResource RoundedButtonTemplate}"
                     >
-            </Button>
-            <Button Grid.Row="4"
+                </Button>
+                <Button
                     Style="{StaticResource ButtonStyle}"
                     Content="Private Zone"
                     FontSize="20"
-                    Height="60"
+                    Height="50"
                     Width="150"
+                    Margin="0"
                     Foreground="White"
                     FontWeight="Bold"
                     Command="{Binding NavigateRecipesBookCommand}"
                     Template="{StaticResource RoundedButtonTemplate}">
+                </Button>
 
-            </Button>
+                
+
+            </StackPanel>
+
+            
 
         </Grid>
     </Grid>

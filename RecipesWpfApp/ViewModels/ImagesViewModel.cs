@@ -16,8 +16,8 @@ namespace RecipesWpfApp.ViewModels
     internal class ImagesViewModel : ViewModelBase
     {
         // The list of food images objects which belongs to specific recipe
-        private List<FoodImage> _images;
-        public List<FoodImage> Images
+        private ObservableCollection<FoodImage> _images;
+        public ObservableCollection<FoodImage> Images
         {
             get { return _images; }
             set
@@ -105,20 +105,6 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
-        private string _iconCameraPath;
-        public string IconCameraPath
-        {
-            get { return _iconCameraPath; }
-            set
-            {
-                if(_iconCameraPath != value)
-                {
-                    _iconCameraPath = value;
-                    OnPropertyChanged(nameof(IconCameraPath));
-                }
-            }
-        }
-
         // The URL of the api of the images 
         public string ApiImageUrl { get; }
 
@@ -139,7 +125,6 @@ namespace RecipesWpfApp.ViewModels
             ApiImageUrl = "https://localhost:7079/api/FoodImage";
 
             IsInAdding = false;
-            IconCameraPath = "C:/Users/1/Source/Repos/MyFinalProject2023/MyProject/BackgroundImages/icon-camera.png";
 
             LoadImagesOfRecipeCommand = new LoadImagesOfRecipeCommand(this);
             BrowseImageCommand = new BrowseImageCommand(this);

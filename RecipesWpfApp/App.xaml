@@ -30,7 +30,7 @@
 
 
             <Color x:Key="PrimaryColor">#FF3D00</Color>
-            <Color x:Key="SecondaryColor">#FFFFFF</Color>
+            <Color x:Key="SecondaryColor">Beige</Color>
             <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}" />
             <SolidColorBrush x:Key="SecondaryColorBrush" Color="{StaticResource SecondaryColor}" />
 
@@ -63,6 +63,7 @@
                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
                 <Setter Property="VerticalAlignment" Value="Center"></Setter>
             </Style>
+
 
 
         </ResourceDictionary>

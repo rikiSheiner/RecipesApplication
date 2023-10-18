@@ -1,4 +1,6 @@
-﻿using RecipesWpfApp.ViewModels;
+﻿using Newtonsoft.Json;
+using RecipesWpfApp.Models;
+using RecipesWpfApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,8 +58,12 @@ namespace RecipesWpfApp.Commands.ImagesCommands
                     {
                         // Read and return the response content
                         var responseContent = await response.Content.ReadAsStringAsync();
-                        //return responseContent;
 
+                        var responseImage = JsonConvert.DeserializeObject<SimpleFoodImage>(responseContent);
+                        image.ImageName = responseImage.ImageName;
+
+                        _imagesViewModel.Images.Add(image);
+                        _imagesViewModel.SelectedImage = image;
                         _imagesViewModel.IsInAdding = false;
                     }
                     else

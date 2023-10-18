@@ -23,10 +23,10 @@
         <StackPanel>
 
             <Image Source="{Binding SelectedImage.ImagePath}" Stretch="Uniform" Height="300" Width="300"
-                   Visibility="{Binding SelectedImage, Converter={StaticResource ValueToVisibilityConverter}}"/>
+                   Visibility="{Binding SelectedImage, Converter={StaticResource ValueToVisibilityConverter}, Mode=TwoWay}"/>
 
-            <ListBox ItemsSource="{Binding Images}" SelectedItem="{Binding SelectedImage}" HorizontalAlignment="Center"
-                     Visibility="{Binding Images, Converter={StaticResource ValueToVisibilityConverter}}">
+            <ListBox ItemsSource="{Binding Images, Mode=TwoWay}" SelectedItem="{Binding SelectedImage}" HorizontalAlignment="Center"
+                     Visibility="{Binding Images, Converter={StaticResource ValueToVisibilityConverter}, Mode=TwoWay}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -39,16 +39,17 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Width="80" Height="80" Command="{Binding BrowseImageCommand}" Style="{StaticResource ButtonStyle2}">
+            <Button Width="90" Height="90" Margin="0,20,0,10" Command="{Binding BrowseImageCommand}" Style="{StaticResource ButtonStyle2}"
+                    HorizontalAlignment="Center">
                 <StackPanel>
                     <Image Source="C:\Users\1\Source\Repos\MyFinalProject2023\RecipesWpfApp\Icons\add-image-icon.png" Width="40" Height="40" />
                     <TextBlock Text="Add Photo" />
                 </StackPanel>
             </Button>
             
-            <Image Source="{Binding BitmapImageToAdd}" Height="300" Width="300"
+            <Image Source="{Binding BitmapImageToAdd}" Height="200" Width="200"
                    Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}"></Image>
-            <Button x:Name="UploadButton"  Content="Add" Height="30" Width="80"
+            <Button x:Name="UploadButton"  Content="Add" Height="30" Width="50"
                     Style="{StaticResource ButtonStyle}"
                     Command="{Binding UploadImageCommand}"
                     Visibility="{Binding IsInAdding, Converter={StaticResource BoolToVisibilityConverter}}">

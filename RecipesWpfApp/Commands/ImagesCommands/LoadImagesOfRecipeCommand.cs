@@ -37,7 +37,7 @@ namespace RecipesWpfApp.Commands.ImagesCommands
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     string json = reader.ReadToEnd();
-                    _imagesViewModel.Images = JsonConvert.DeserializeObject<List<FoodImage>>(json);
+                    _imagesViewModel.Images = JsonConvert.DeserializeObject<ObservableCollection<FoodImage>>(json);
 
 
                     if (_imagesViewModel.Images.Count > 0)

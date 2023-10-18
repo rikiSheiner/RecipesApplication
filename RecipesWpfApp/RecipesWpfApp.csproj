@@ -344,9 +344,6 @@
     <Resource Include="BackgroundImages\default-food-image.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="BackgroundImages\icon-camera.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Icons\add-image-icon.png" />
     <Resource Include="Icons\add-circle-icon.png" />
     <Resource Include="Icons\home-icon.png" />
@@ -354,6 +351,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\add-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BackgroundImages\me.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BackgroundImages\women-chef.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BackgroundImages\food-home.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BackgroundImages\home-food1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
