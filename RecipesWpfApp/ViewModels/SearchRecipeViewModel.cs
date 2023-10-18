@@ -84,7 +84,7 @@ namespace RecipesWpfApp.ViewModels
         {
             NavigationBarViewModel = navigationBarViewModel;
             _navigationStore = navigationStore;
-            _recipes = new List<Recipe>();
+            //_recipes = new List<Recipe>();
             SearchRecipesCommand = new SearchRecipesCommand(this);
             GetRecipeDetailsCommand = new GetRecipeDetailsCommand(this, NavigationBarViewModel, _navigationStore);
 

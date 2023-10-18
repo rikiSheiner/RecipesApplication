@@ -364,5 +364,11 @@
   <ItemGroup>
     <Resource Include="BackgroundImages\home-food1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\search-icon-orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\search-icon1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

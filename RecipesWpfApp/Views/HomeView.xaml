@@ -40,7 +40,7 @@
                 
                 <Button
                     Style="{StaticResource ButtonStyle}"
-                    Content="Get Started"
+                    Content="Recipes"
                     FontSize="18"
                     Height="50"
                     Width="170"
