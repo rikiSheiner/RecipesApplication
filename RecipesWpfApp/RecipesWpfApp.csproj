@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ChangeStarFillCommand.cs" />
     <Compile Include="Commands\ImagesCommands\BrowseImageCommand.cs" />
     <Compile Include="Commands\ImagesCommands\FindRecipeImagePath.cs" />
     <Compile Include="Commands\ImagesCommands\LoadImagesOfRecipeCommand.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="ViewModels\RecipesBookViewModel.cs" />
     <Compile Include="ViewModels\SearchRecipeViewModel.cs" />
     <Compile Include="ViewModels\SingleRecipeViewModel.cs" />
+    <Compile Include="ViewModels\StarRatingViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views1\AddHolidayToRecipeWindow.xaml.cs">
       <DependentUpon>AddHolidayToRecipeWindow.xaml</DependentUpon>
@@ -187,6 +189,9 @@
     </Compile>
     <Compile Include="Views\SingleRecipeView.xaml.cs">
       <DependentUpon>SingleRecipeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StarRatingView.xaml.cs">
+      <DependentUpon>StarRatingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -275,6 +280,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\StarRatingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -305,9 +314,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="old-version\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack">
@@ -383,6 +389,10 @@
   <ItemGroup>
     <Resource Include="Icons\cancel.png" />
     <Resource Include="Icons\V.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\empty-star.png" />
+    <Resource Include="Icons\full-star.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 using RecipesWpfApp.Commands;
 using RecipesWpfApp.Commands.RecipeCommands;
 using RecipesWpfApp.Models;
@@ -85,9 +86,6 @@ namespace RecipesWpfApp.ViewModels
         }
 
         private JewishHolidayViewModel _jewishHolidayViewModel;
-        private RecipeDetails parameter;
-        private NavigationStore navigationStore;
-
         public JewishHolidayViewModel JewishHolidayViewModel
         {
             get { return _jewishHolidayViewModel; }
@@ -100,6 +98,24 @@ namespace RecipesWpfApp.ViewModels
                 }
             }
         }
+
+        private StarRatingViewModel _starRatingViewModel;
+        public StarRatingViewModel StarRatingViewModel
+        {
+            get { return _starRatingViewModel; }
+            set
+            {
+                if(_starRatingViewModel != value)
+                {
+                    _starRatingViewModel = value;
+                    OnPropertyChanged(nameof(StarRatingViewModel)); 
+                }
+            }
+        }
+
+
+        private RecipeDetails parameter;
+        private NavigationStore navigationStore;
 
         public ICommand SaveRecipeCommand { get; }
         public ICommand RateRecipeCommand { get; }
@@ -119,13 +135,48 @@ namespace RecipesWpfApp.ViewModels
 
             SaveRecipeCommand = new SaveRecipeCommand(this);
             UpdateRecipeDetailsCommand = new UpdateRecipeDetailsCommand(this);
+            RateRecipeCommand = new UpdateRecipeDetailsCommand(this);
 
             _navigationStore = navigationStore;
 
             _notesViewModel = new NotesViewModel(this);
             _imagesViewModel = new ImagesViewModel(this);
             _jewishHolidayViewModel = new JewishHolidayViewModel(this, _navigationStore);
+            _starRatingViewModel = new StarRatingViewModel(this);
 
+            UpdateStarsColors();
+        }
+
+        private void UpdateStarsColors()
+        {
+            if (_starRatingViewModel != null)
+            {
+                var yellow = new SolidColorBrush(Colors.Yellow);
+                switch(RecipeDetails.Ranking)
+                {
+                    case 5:
+                        _starRatingViewModel.Star5Fill = yellow;
+                        goto case 4;
+
+                    case 4:
+                        _starRatingViewModel.Star4Fill = yellow;
+                        goto case 3;
+
+                    case 3:
+                        _starRatingViewModel.Star3Fill = yellow;
+                        goto case 2;
+
+                    case 2:
+                        _starRatingViewModel.Star2Fill = yellow;
+                        goto case 1;
+
+                    case 1:
+                        _starRatingViewModel.Star1Fill = yellow;
+                        break;
+                }
+
+                _starRatingViewModel.CurrentRating = RecipeDetails.Ranking;
+            }
         }
 
     }
