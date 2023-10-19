@@ -7,10 +7,12 @@
              xmlns:local="clr-namespace:RecipesWpfApp.Views"
              xmlns:components="clr-namespace:RecipesWpfApp.Components"
              xmlns:converters="clr-namespace:RecipesWpfApp.Converters"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="450">
     <Grid>
         <Grid.Resources>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
             <converters:ValueToVisibilityConverter x:Key="ValueToVisibilityConverter"></converters:ValueToVisibilityConverter>
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -25,6 +27,7 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5" Visibility="Collapsed">
                         <TextBox x:Name="SearchTextBox" Width="200" Text="{Binding Query, Mode=TwoWay}" />
+
                         <Button 
                                 Style="{StaticResource ButtonStyle}"
                                 Command="{Binding SearchRecipesCommand}">
@@ -42,13 +45,24 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="txtSearch" Grid.Column="0" FontSize="16" Text="{Binding Query, Mode=TwoWay}" Background="Beige" BorderThickness="0" Margin="5" VerticalContentAlignment="Center" />
+                            <TextBox x:Name="txtSearch" Grid.Column="0" FontSize="16" Text="{Binding Query, Mode=TwoWay}" Background="Beige" BorderThickness="0" Margin="5"
+                                     VerticalContentAlignment="Center" Foreground="{StaticResource PrimaryColorBrush}">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding SetSearchContentCommand}"></i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
                             <Button Grid.Column="1" Margin="0,5,5,5" Background="Transparent" Command="{Binding SearchRecipesCommand}" BorderThickness="0">
                                 <Image Source="C:\Users\1\Source\Repos\MyFinalProject2023\RecipesWpfApp\Icons\search-icon1.png" Width="25" Height="25"
                                        />
                             </Button>
                         </Grid>
                     </Border>
+
+                    <Controls:ProgressRing Name="circularProgressBar" IsActive="{Binding IsLoading}" 
+                                           Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}"/>
 
 
                     <ListBox ItemsSource="{Binding Recipes}"
@@ -57,7 +71,6 @@
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding GetRecipeDetailsCommand}"></i:InvokeCommandAction>
-                                <i:InvokeCommandAction Command="{Binding SelectRecipeCommand}" CommandParameter="false"></i:InvokeCommandAction>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>

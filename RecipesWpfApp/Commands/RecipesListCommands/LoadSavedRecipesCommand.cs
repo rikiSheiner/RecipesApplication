@@ -26,23 +26,44 @@ namespace RecipesWpfApp.Commands.RecipesListCommands
             var URL_TO_ASP_API_ENDPOINT = "https://localhost:7079/api/Recipe";
 
 
-            HttpResponseMessage response = await client.GetAsync(URL_TO_ASP_API_ENDPOINT);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                List<RecipeDetails> recipes;
-                using (Stream stream = await response.Content.ReadAsStreamAsync())
-                using (StreamReader reader = new StreamReader(stream))
+                _bookViewModel.IsLoading = true;
+                HttpResponseMessage response = await client.GetAsync(URL_TO_ASP_API_ENDPOINT);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    string json = reader.ReadToEnd();
-                    recipes = JsonConvert.DeserializeObject<List<RecipeDetails>>(json);
-                    _bookViewModel.AllRecipes = _bookViewModel.Recipes = recipes;
+                    List<RecipeDetails> recipes;
+                    using (Stream stream = await response.Content.ReadAsStreamAsync())
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        string json = reader.ReadToEnd();
+                        recipes = JsonConvert.DeserializeObject<List<RecipeDetails>>(json);
+                        string imagesFilePath = "C:\\Users\\1\\Source\\Repos\\MyFinalProject2023\\MyProject\\Images\\";
+                        for (int i = 0; i < recipes.Count; i++)
+                        {
+                            if (recipes[i].FoodImage.Count > 0)
+                                recipes[i].ImagePath = imagesFilePath + recipes[i].FoodImage[0].ImageName;
+                        }
+                        _bookViewModel.AllRecipes = _bookViewModel.Recipes = recipes;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ERROR");
                 }
             }
-            else
+            catch
             {
-                //MessageBox.Show("ERROR");
+                MessageBox.Show("Error on loading saved recipes.");
             }
+            finally
+            {
+                _bookViewModel.IsLoading = false;
+            }
+
+
+
         }
     }
 }

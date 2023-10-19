@@ -72,10 +72,13 @@ namespace RecipesWpfApp.Commands.RecipeCommands
 
                 foreach (var item in jsonObject["sections"][0]["components"])
                 {
-                    position++;
                     rawText = item["raw_text"].ToString();
-                    var ingredient = new Ingredient(position, recipeId, rawText);
-                    recipeDetails.Ingredients.Add(ingredient);
+                    if (rawText != "n/a")
+                    {
+                        position++;
+                        var ingredient = new Ingredient(position, recipeId, rawText);
+                        recipeDetails.Ingredients.Add(ingredient);
+                    }
                 }
 
                 position = 0;

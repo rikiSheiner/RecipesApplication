@@ -69,25 +69,44 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                if (_isLoading != value)
+                {
+                    _isLoading = value;
+                    OnPropertyChanged(nameof(IsLoading));
+                }
+            }
+        }
+
         public NavigationBarViewModel NavigationBarViewModel { get; }
 
         private readonly NavigationStore _navigationStore;
 
         public event EventHandler SelectionChangedRecipes;
 
+
         public ICommand SearchRecipesCommand { get; }
         public ICommand GetRecipeDetailsCommand { get; }
+        public ICommand SetSearchContentCommand { get; }
 
 
         public SearchRecipeViewModel(NavigationBarViewModel navigationBarViewModel, 
             NavigationStore navigationStore)
         {
+            Query = "search recipe";
             NavigationBarViewModel = navigationBarViewModel;
             _navigationStore = navigationStore;
+            IsLoading = false;
             //_recipes = new List<Recipe>();
             SearchRecipesCommand = new SearchRecipesCommand(this);
             GetRecipeDetailsCommand = new GetRecipeDetailsCommand(this, NavigationBarViewModel, _navigationStore);
-
+            SetSearchContentCommand = new SetSearchContentCommand(this);
         }
 
     }

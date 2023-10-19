@@ -16,7 +16,7 @@
                        FontWeight="Bold"></TextBlock>
 
             <ListView ItemsSource="{Binding Instructions}" FontSize="14" Foreground="Black" BorderBrush="Transparent" BorderThickness="0"
-                          Margin="0,20,0,0">
+                          Margin="0,20,0,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.View>
                     <GridView>
                         <GridView.ColumnHeaderContainerStyle>

@@ -4,15 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RecipesWpfApp.Views"
+             xmlns:converters="clr-namespace:RecipesWpfApp.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
+    <UserControl.Resources>
+        <converters:ValueToVisibilityConverter x:Key="ValueToVisibilityConverter"></converters:ValueToVisibilityConverter>
+    </UserControl.Resources>
     <Grid>
         <StackPanel>
             <TextBlock x:Name="ingredientsTB" Text="Ingredients"  FontSize="25"
                        FontWeight="Bold"></TextBlock>
 
             <ListView ItemsSource="{Binding Ingredients}" FontSize="14" Foreground="Black" BorderBrush="Transparent" BorderThickness="0"
-                      Margin="0,20,0,0">
+                      Margin="0,20,0,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.View>
                     <GridView>
                         <GridView.ColumnHeaderContainerStyle>
@@ -23,7 +27,7 @@
                         <GridViewColumn Width="380">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding Name, Converter={StaticResource ValueToVisibilityConverter}}">
                                         <TextBlock Text="● " FontWeight="Bold" FontSize="12" VerticalAlignment="Center" Margin="5"/>
                                         <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5" TextWrapping="Wrap"/>
                                     </StackPanel>

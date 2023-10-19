@@ -83,6 +83,7 @@
     <Compile Include="Commands\NotesCommands\RemoveNoteCommand.cs" />
     <Compile Include="Commands\RecipesListCommands\SearchRecipesCommand.cs" />
     <Compile Include="Commands\RecipesListCommands\SearchSavedRecipesCommand.cs" />
+    <Compile Include="Commands\RecipesListCommands\SetSearchContentCommand.cs" />
     <Compile Include="Components\NavigationBar.xaml.cs">
       <DependentUpon>NavigationBar.xaml</DependentUpon>
     </Compile>
@@ -312,6 +313,9 @@
     <PackageReference Include="HtmlAgilityPack">
       <Version>1.11.54</Version>
     </PackageReference>
+    <PackageReference Include="MahApps.Metro">
+      <Version>2.4.10</Version>
+    </PackageReference>
     <PackageReference Include="MaterialDesignColors">
       <Version>2.1.4</Version>
     </PackageReference>
@@ -369,6 +373,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\search-icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\meal-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\recipes-book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\cancel.png" />
+    <Resource Include="Icons\V.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

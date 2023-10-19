@@ -13,7 +13,9 @@ namespace RecipesWpfApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value != null) ? Visibility.Visible : Visibility.Collapsed;
+            if(value == null || (value is string && (string)value == "n/a"))
+                return Visibility.Collapsed;
+            return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

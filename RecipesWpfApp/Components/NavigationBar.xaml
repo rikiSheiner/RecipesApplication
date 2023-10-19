@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:RecipesWpfApp.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="{StaticResource PrimaryColorBrush}">
+    <Grid Background="{StaticResource PrimaryColorBrush}" Height="40">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"></ColumnDefinition>
             <ColumnDefinition Width="80"></ColumnDefinition>
@@ -17,7 +17,7 @@
         <TextBlock Grid.Column="0"
                    Style="{StaticResource TextBlockStyle}"
                    Foreground="White"
-                   Text="Best Recipes"
+                   Text="Riki's Kitchen"
                    ></TextBlock>
 
         <Button Style="{StaticResource ButtonStyle}"
@@ -29,12 +29,12 @@
         <Button Style="{StaticResource ButtonStyle}"
             Grid.Column="2"
             Command="{Binding NavigateSearchRecipesCommand}"
-            Content="Search Recipes"
+            Content="Recipes"
             />
         <Button Style="{StaticResource ButtonStyle}"
             Grid.Column="3"
             Command="{Binding NavigateRecipesBookCommand}"
-            Content="Private Zone"
+            Content="Personal Area"
             />
     </Grid>
 </UserControl>

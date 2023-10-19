@@ -71,6 +71,20 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                if (_isLoading != value)
+                {
+                    _isLoading = value;
+                    OnPropertyChanged(nameof(IsLoading));
+                }
+            }
+        }
+
         public NavigationBarViewModel NavigationBarViewModel { get; }
 
         private readonly NavigationStore _navigationStore;
@@ -80,14 +94,17 @@ namespace RecipesWpfApp.ViewModels
         public ICommand SearchRecipesCommand { get; }
         public ICommand SelectRecipeCommand { get; }
         public ICommand LoadSavedRecipesCommand { get; }
+        public ICommand SetSearchContentCommand { get; }
 
 
         public RecipesBookViewModel(NavigationBarViewModel navigationBarViewModel,
             NavigationStore navigationStore)
         {
+            Query = "search recipe";
             NavigationBarViewModel = navigationBarViewModel;
             _navigationStore = navigationStore;
-            _recipes = new List<RecipeDetails>();
+            IsLoading = false;
+            //_recipes = new List<RecipeDetails>();
             SearchRecipesCommand = new SearchSavedRecipesCommand(this);
             LoadSavedRecipesCommand = new LoadSavedRecipesCommand(this);
 
@@ -96,7 +113,7 @@ namespace RecipesWpfApp.ViewModels
                 (parameter)=>new SingleRecipeViewModel(navigationBarViewModel,parameter, true, navigationStore));
 
             SelectRecipeCommand = new SelectSavedRecipeCommand(this, navigationService);
-
+            SetSearchContentCommand = new SetSearchContentCommand(this);
         }
 
     }

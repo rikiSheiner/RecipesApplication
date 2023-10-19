@@ -46,15 +46,31 @@ namespace RecipesWpfApp.Commands.RecipesListCommands
                     { "X-RapidAPI-Host", API_HOST },
                 },
             };
-            using (var response = await _httpClient.SendAsync(request))
+
+            try
             {
-                response.EnsureSuccessStatusCode();
-                string responseContent = await response.Content.ReadAsStringAsync();
+                _searchRecipeViewModel.IsLoading = true;
+                using (var response = await _httpClient.SendAsync(request))
+                {
+                    response.EnsureSuccessStatusCode();
+                    string responseContent = await response.Content.ReadAsStringAsync();
 
-                RecipeList items = JsonConvert.DeserializeObject<RecipeList>(responseContent);
+                    RecipeList items = JsonConvert.DeserializeObject<RecipeList>(responseContent);
 
-                _searchRecipeViewModel.Recipes = items.results;
+                    _searchRecipeViewModel.Recipes = items.results;
+                }
             }
+            catch
+            {
+                MessageBox.Show("ERROR");
+            }
+            finally
+            {
+                _searchRecipeViewModel.IsLoading = false;
+
+            }
+
+
 
         }
     }

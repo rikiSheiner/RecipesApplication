@@ -214,7 +214,7 @@ namespace RecipesWpfApp.Models
             _ingredients = new List<Ingredient>();
             _foodImage = new List<FoodImage>();
 
-            ImagePath = "C:/Users/1/Source/Repos/MyFinalProject2023/RecipesWpfApp/BackgroundImages/default-food-image.png";
+            ImagePath = "C:\\Users\\1\\Source\\Repos\\MyFinalProject2023\\RecipesWpfApp\\Icons\\meal-icon.png";
             //_jewishHolidays = new List<JewishHolidayToAdd> ();
         }
     }
