@@ -17,6 +17,6 @@ namespace MyProject.Models
         public int RecipeId { get; set; }
         [NotMapped]
         //[DisplayName("Upload Image")]
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ImageFile { get; set; }
     }
 }
