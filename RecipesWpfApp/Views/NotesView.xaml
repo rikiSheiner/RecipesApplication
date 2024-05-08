@@ -16,16 +16,16 @@
             <TextBlock x:Name="notesTB" Text="Reviews"  FontSize="25"
                        FontWeight="Bold"></TextBlock>
 
-            <ListView x:Name="notesLV" ItemsSource="{Binding Notes}" 
-                      FontSize="14" Foreground="Black" BorderBrush="Transparent" BorderThickness="0"
-                      Margin="0,20,0,0">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Margin" Value="5" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-
+            <ListView x:Name="notesLV" ItemsSource="{Binding Notes}"
+          FontSize="14" Foreground="Black" BorderBrush="Transparent" BorderThickness="0"
+          Margin="0,20,0,0"
+          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+          ItemTemplate="{StaticResource ListViewItemTemplate}">
+                <ListView.Resources>
+                    <Style TargetType="ScrollViewer" BasedOn="{StaticResource ListViewScrollViewerStyle}"/>
+                </ListView.Resources>
             </ListView>
+
 
 
             <TextBox Text="{Binding NoteToAdd}" Margin="5,20,0,0" TextWrapping="Wrap" Height="80">

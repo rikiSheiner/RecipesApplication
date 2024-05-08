@@ -21,14 +21,12 @@
         <StackPanel>
             <TextBlock Text="Recommended for preparation on:" FontSize="18" TextWrapping="Wrap"
                        FontWeight="Bold" Margin="0,20,0,10"></TextBlock>
-            <ListView ItemsSource="{Binding Holidays}" SelectedItem="{Binding SelectedJewishHoliday}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding GetJewishHolidayDetailsCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
 
+            <ListView x:Name="HolidaysListView" ItemsSource="{Binding Holidays}" SelectedItem="{Binding SelectedJewishHoliday}" Margin="10"
+                        ItemContainerStyle="{StaticResource HolidayListViewItemStyle}"
+                        ItemTemplate="{StaticResource HolidayItemTemplate}">
             </ListView>
+
             <Button Width="20" Height="20" Margin="3,10,0,0" HorizontalAlignment="Left"
                     Background="Transparent" BorderBrush="Gray"
                     Command="{Binding AddHolidayStateCommand}">
@@ -36,15 +34,17 @@
                     <Image Source="C:\Users\1\Source\Repos\MyFinalProject2023\RecipesWpfApp\Icons\add-icon.png"/>
                 </StackPanel>
             </Button>
-            
-            <TextBlock Text="Choose Holiday" Margin="0,10,0,0" FontSize="14" HorizontalAlignment="Center"  FontWeight="SemiBold"
-                       Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
-            <ComboBox Width="auto" ItemsSource="{Binding AllHolidays}" Margin="0,10,0,0"
-                      SelectedItem="{Binding JewishHolidayToAdd}" HorizontalAlignment="Center"
-                      Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></ComboBox>
-            <Button Content="ADD" Width="40" Command="{Binding AddJewishHolidayCommand}" Margin="0,10,0,0" HorizontalAlignment="Center"
-                    Style="{StaticResource ButtonStyle}"
+
+            <TextBlock Text="Choose:" Style="{StaticResource TitleTextBlockStyle}"
+           Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+
+            <ComboBox ItemsSource="{Binding AllHolidays}" Style="{StaticResource HolidaysComboBoxStyle}"
+          SelectedItem="{Binding JewishHolidayToAdd}"
+          Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></ComboBox>
+            <Button Content="OK" Width="60" Command="{Binding AddJewishHolidayCommand}" Margin="5,10,0,0" HorizontalAlignment="Left"
+                    Style="{StaticResource ButtonStyle2}"
                     Visibility="{Binding IsInAddingHoliday, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
+
         </StackPanel>
         
     </Grid>

@@ -65,22 +65,28 @@
                                            Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}"/>
 
 
-                    <ListBox ItemsSource="{Binding Recipes}"
+                    <ListBox ItemsSource="{Binding Recipes}" 
+                             Margin="10" BorderThickness="0"
                              SelectedItem="{Binding SelectedRecipe}"
-                             Visibility="{Binding Recipes, Converter={StaticResource ValueToVisibilityConverter}, Mode=TwoWay}">
+                             Background="{StaticResource SecondaryColorBrush}"
+                             Visibility="{Binding Recipes, Converter={StaticResource ValueToVisibilityConverter}, Mode=TwoWay}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding GetRecipeDetailsCommand}"></i:InvokeCommandAction>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
+                        
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
+                                <StackPanel Width="390">
                                     <Image Source="{Binding ImagePath}" HorizontalAlignment="Left" Width="100" Height="100"/>
-                                    <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Description}" 
-                                               TextWrapping="Wrap"
+                                    <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="Bold" Foreground="{StaticResource PrimaryColorBrush}"/>
+
+                                    <TextBlock Text="{Binding Description}" FontSize="13" FontWeight="Medium"
+                                               TextWrapping="WrapWithOverflow" Foreground="{StaticResource PrimaryColorBrush}"
                                                />
+
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

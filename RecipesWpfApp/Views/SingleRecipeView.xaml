@@ -24,9 +24,6 @@
         <components:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}"/>
         <Grid  Grid.Row="1">
             <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Loaded">
-                    <i:InvokeCommandAction Command="{Binding LoadSingleRecipeCommand}"></i:InvokeCommandAction>
-                </i:EventTrigger>
                 <i:EventTrigger EventName="Unloaded">
                     <i:InvokeCommandAction Command="{Binding UpdateRecipeDetailsCommand}"></i:InvokeCommandAction>
                 </i:EventTrigger>
