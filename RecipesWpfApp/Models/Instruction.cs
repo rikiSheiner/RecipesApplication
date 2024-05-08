@@ -4,6 +4,9 @@ using System.Runtime.CompilerServices;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// משמש בשביל לייצג מודל הוראה מתוך רשימת ההוראות של מתכון
+    /// </summary>
     public class Instruction : ObservableObject
     {
         /// <summary>

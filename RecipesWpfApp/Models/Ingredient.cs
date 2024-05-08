@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// משמש בשביל לייצג מודל רכיב של מתכון מתוך רשימת הרכיבים
+    /// </summary>
     public class Ingredient : ObservableObject
     {
         private int _index;

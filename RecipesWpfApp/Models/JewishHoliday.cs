@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// משמש בשביל לייצג מודל של מועד מרשימת המועדים היהודיים
+    /// </summary>
     public class JewishHoliday : ObservableObject
     {
         public static int JewishHolidayCounter = 0;

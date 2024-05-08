@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// משמש בשביל לייצג הערה מתוך רשימת ההערות שנשמרו עבור מאכל מסוים
+    /// </summary>
     public class Note : ObservableObject
     {
         private int _noteNumber;

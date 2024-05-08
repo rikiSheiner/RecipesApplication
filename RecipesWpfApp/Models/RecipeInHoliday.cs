@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace RecipesWpfApp.Models
 {
     /// <summary>
-    /// this class reperesents the documentation of jewish holidays 
-    /// when the recipe was in use
+    /// משמש לייצוג חג יהודי שבו נעשה שימוש במתכון מסוים 
     /// </summary>
     internal class RecipeInHoliday : ObservableObject
     {

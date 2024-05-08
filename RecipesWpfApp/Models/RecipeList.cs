@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// מחלקה זו משמשת לייצוג מודל של רשימת מתכונים שמורים
+    /// </summary>
     public class RecipeList : ObservableObject
     {
         private List<Recipe> _results;

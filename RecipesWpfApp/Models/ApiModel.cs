@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// מחלקה זו משמשת לייצוג מודל של מתכון לפי API
+    /// </summary>
     public class ApiModel
     {
         public string title { get; set; }

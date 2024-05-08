@@ -8,9 +8,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// משמש בשביל לייצג מודל תמונה של מאכל מסוים 
+    /// השמור ברשימת המתכונים
+    /// </summary>
     public class FoodImage : ObservableObject
     {
         public const string ImagesFilePath = "C:/Users/1/Source/Repos/MyFinalProject2023/MyProject/Images/";
@@ -87,7 +92,9 @@ namespace RecipesWpfApp.Models
             }
         }
 
+        
         private string _imagePath;
+        [JsonIgnore]
         public string ImagePath
         {
             get { return _imagePath; }
@@ -108,6 +115,10 @@ namespace RecipesWpfApp.Models
     }
 
 
+    /// <summary>
+    /// משמש בשביל לייצג מודל תמונה של מאכל מסוים
+    /// בדומה לקודם רק מכיל פחות תכונות
+    /// </summary>
     internal class SimpleFoodImage : ObservableObject
     {
         private int _imageId;

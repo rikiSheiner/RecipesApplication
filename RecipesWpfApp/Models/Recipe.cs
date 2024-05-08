@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// משמש בשביל לייצג מודל של מתכון מסוים
+    /// זהו מודל מדולל המשמש להצגת רשימת המתכונים שנשמרו ע"י המשתמש
+    /// </summary>
     public class Recipe : ObservableObject
     {
         private int _id;
@@ -56,7 +60,6 @@ namespace RecipesWpfApp.Models
             }
         }
 
-        public const string DefaultImagePath = "C:/Users/1/Source/Repos/MyFinalProject2023/RecipesWpfApp/BackgroundImages/default-food-image.png";
 
         private string _imagePath;
         public string ImagePath
@@ -73,7 +76,7 @@ namespace RecipesWpfApp.Models
 
         public Recipe()
         {
-            ImagePath = DefaultImagePath;
+            ImagePath = "C:\\Users\\1\\Source\\Repos\\MyFinalProject2023\\RecipesWpfApp\\Icons\\meal-icon.png";
         }
     }
 }

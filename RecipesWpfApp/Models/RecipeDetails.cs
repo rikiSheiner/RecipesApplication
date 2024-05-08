@@ -8,9 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents.DocumentStructures;
+using Newtonsoft.Json;
 
 namespace RecipesWpfApp.Models
 {
+    /// <summary>
+    /// משמש בשביל לייצג מודל של מתכון מפורט
+    /// כולל את כל הפרטים הרלוונטיים השייכים למתכון זה
+    /// מחלקה זו מכילה טיפול במקרה של מתכון שמור ומתכון לא שמור 
+    /// </summary>
     public class RecipeDetails : ObservableObject
     {
         private int _id;
@@ -193,6 +199,7 @@ namespace RecipesWpfApp.Models
         }
 
         private string _imagePath;
+        [JsonIgnore]
         public string ImagePath
         {
             get { return _imagePath; }
