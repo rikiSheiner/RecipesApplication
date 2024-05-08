@@ -11,8 +11,12 @@ using System.Windows.Input;
 
 namespace RecipesWpfApp.ViewModels
 {
+    /// <summary>
+    /// מחלקה האחראית על הלוגיקה של עמוד חיפוש מתכונים לא שמורים
+    /// </summary>
     internal class SearchRecipeViewModel : ViewModelBase
     {
+        // שאילתת החיפוש של מתכונים
         private string _query;
         public string Query
         {
@@ -27,6 +31,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // המתכון הנבחר מהמתכונים המוצגים
         private Recipe _selectedRecipe;
         public Recipe SelectedRecipe
         {
@@ -41,6 +46,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // פרטי המתכון הנבחר
         private RecipeDetails _selectedRecipeDetails;
         public RecipeDetails SelectedRecipeDetails
         {
@@ -55,6 +61,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // רשימה של כל המתכונים השמורים
         private List<Recipe> _recipes;
         public List<Recipe> Recipes
         {
@@ -69,7 +76,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
-
+        // האם אנו בטעינת מתכון
         private bool _isLoading;
         public bool IsLoading
         {
@@ -84,15 +91,18 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // מחלקה האחראית על הלוגיקה של תפריט הניווט
         public NavigationBarViewModel NavigationBarViewModel { get; }
 
         private readonly NavigationStore _navigationStore;
 
         public event EventHandler SelectionChangedRecipes;
 
-
+        // פעולה של חיפוש מתכונים
         public ICommand SearchRecipesCommand { get; }
+        // פעולה של קבלת פרטי מתכון
         public ICommand GetRecipeDetailsCommand { get; }
+        // פעולה של איפוס תוכן תיבת החיפוש של מתכונים
         public ICommand SetSearchContentCommand { get; }
 
 

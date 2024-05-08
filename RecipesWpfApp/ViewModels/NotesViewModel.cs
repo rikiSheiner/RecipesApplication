@@ -11,6 +11,9 @@ using System.Windows.Input;
 
 namespace RecipesWpfApp.ViewModels
 {
+    /// <summary>
+    /// מחלקה האחראית על הלוגיקה של הערות עבור מתכון
+    /// </summary>
     internal class NotesViewModel : ViewModelBase
     {
         private int _recipeId;

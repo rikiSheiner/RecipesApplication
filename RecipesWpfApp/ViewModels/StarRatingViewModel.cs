@@ -9,6 +9,9 @@ using System.Windows.Media;
 
 namespace RecipesWpfApp.ViewModels
 {
+    /// <summary>
+    /// מחלקה האחראית על הלוגיקה של דירוג כוכבים למתכון
+    /// </summary>
     internal class StarRatingViewModel : ViewModelBase
     {
         private SingleRecipeViewModel _singleRecipeViewModel;

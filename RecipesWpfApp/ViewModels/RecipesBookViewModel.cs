@@ -13,8 +13,12 @@ using System.Windows.Input;
 
 namespace RecipesWpfApp.ViewModels
 {
+    /// <summary>
+    /// מחלקה האחראית על הלוגיקה הקשורה לתצוגת המתכונים שמורים
+    /// </summary>
     internal class RecipesBookViewModel : ViewModelBase
     {
+        // שאילתת החיפוש עבור תיבת חיפוש מתכונים שמורים
         private string _query;
         public string Query
         {
@@ -29,6 +33,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // המתכון הנבחר מבין המתכונים השמורים 
         private RecipeDetails _selectedRecipe;
         public RecipeDetails SelectedRecipe
         {
@@ -43,6 +48,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // רשימה המכילה את פרטי כל המתכונים השמורים
         private List<RecipeDetails> _recipes;
         public List<RecipeDetails> Recipes
         {
@@ -57,6 +63,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // רשימה המכילה את פרטי כל המתכונים השמורים
         private List<RecipeDetails> _allRecipes;
         public List<RecipeDetails> AllRecipes
         {
@@ -71,6 +78,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // האם אנו עדיין בטעינת המתכונים השמורים או שכבר סיימנו
         private bool _isLoading;
         public bool IsLoading
         {
@@ -85,15 +93,21 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // מחלקה האחראית על הלוגיגה של תפריט הניווט
         public NavigationBarViewModel NavigationBarViewModel { get; }
 
         private readonly NavigationStore _navigationStore;
-
+        
+        // אירוע של שינוי מתכון נבחר
         public event EventHandler SelectionChangedRecipes;
 
+        // פעולה של חיפוש מתכונים
         public ICommand SearchRecipesCommand { get; }
+        // פעולה של בחירת מתכון
         public ICommand SelectRecipeCommand { get; }
+       // פעולןה של טעינת כל המתכונים השמורים
         public ICommand LoadSavedRecipesCommand { get; }
+        // פעולה של איפוס תיבת חיפוש מתכונים
         public ICommand SetSearchContentCommand { get; }
 
 

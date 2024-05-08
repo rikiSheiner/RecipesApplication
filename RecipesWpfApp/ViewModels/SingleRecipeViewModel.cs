@@ -12,8 +12,12 @@ using RecipesWpfApp.Stores;
 
 namespace RecipesWpfApp.ViewModels
 {
+    /// <summary>
+    /// מחלקה האחראית על הלוגיקה של עמוד חיפוש מתכון יחיד
+    /// </summary>
     internal class SingleRecipeViewModel : ViewModelBase
     {
+        // האם המתכון לא שמור
         private bool _isNotSaved;
         public bool IsNotSaved
         {
@@ -29,6 +33,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // האם המתכון שמור
         private bool _isSaved;
         public bool IsSaved
         {
@@ -43,6 +48,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // פרטי המתכון הנוכחי
         private RecipeDetails _recipeDetails;
         public RecipeDetails RecipeDetails
         {
@@ -57,6 +63,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // מופע המחלקה האחראית על הלוגיקה של הערות המתכון
         private NotesViewModel _notesViewModel;
         public NotesViewModel NotesViewModel
         {
@@ -71,6 +78,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // מחלקה האחראית על הלוגיקה של תמונות המתכון
         private ImagesViewModel _imagesViewModel;
         public ImagesViewModel ImagesViewModel
         {
@@ -85,6 +93,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // מופע מחלקה האחראית על הלוגיקה של המועדים שבהם הוכן המתכון
         private JewishHolidayViewModel _jewishHolidayViewModel;
         public JewishHolidayViewModel JewishHolidayViewModel
         {
@@ -99,6 +108,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // מופע מחלקה האחראית על הלוגיקה של דירוג המתכון
         private StarRatingViewModel _starRatingViewModel;
         public StarRatingViewModel StarRatingViewModel
         {
@@ -114,11 +124,14 @@ namespace RecipesWpfApp.ViewModels
         }
 
 
-        private RecipeDetails parameter;
-        private NavigationStore navigationStore;
+        //private RecipeDetails parameter;
+        //private NavigationStore navigationStore;
 
+        // פעולה של שמירת המתכון
         public ICommand SaveRecipeCommand { get; }
+        // פעולה של דירוג המתכון
         public ICommand RateRecipeCommand { get; }
+        // פעולה של עדכון פרטי מתכון
         public ICommand UpdateRecipeDetailsCommand { get; }
 
         private readonly NavigationStore _navigationStore;

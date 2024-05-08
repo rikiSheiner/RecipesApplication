@@ -13,9 +13,12 @@ using System.Windows.Media.Imaging;
 
 namespace RecipesWpfApp.ViewModels
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג הלוגיקה של תמונת מתכון
+    /// </summary>
     internal class ImagesViewModel : ViewModelBase
     {
-        // The list of food images objects which belongs to specific recipe
+        // רשימת תמונות מתכון עבור מתכון מסוים
         private ObservableCollection<FoodImage> _images;
         public ObservableCollection<FoodImage> Images
         {
@@ -31,7 +34,7 @@ namespace RecipesWpfApp.ViewModels
         }
 
 
-        // The image of the recipe to add
+        // תמונת מתכון חדשה שרוצים להוסיף
         private FoodImage _imageToAdd;
         public FoodImage ImageToAdd
         {
@@ -47,7 +50,8 @@ namespace RecipesWpfApp.ViewModels
         }
 
 
-        // The selected image to be shown in big size
+        // התמונה הנבחרת מבין תמונות המתכון
+        // זוהי התמונה שתוצג בגדול ושאר התמונות יוצגו בקטן
         private FoodImage _selectedImage;
         public FoodImage SelectedImage
         {
@@ -76,7 +80,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
-        // The details of the selected recipe
+        // פרטי המתכון שרוצים להוסיף לו תמונה
         private RecipeDetails _recipeDetails;
         public RecipeDetails RecipeDetails
         {
@@ -91,6 +95,7 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
+        // האם אנו במצב של הוספת תמונה למתכון או לא
         private bool _isInAdding;
         public bool IsInAdding
         {
@@ -105,17 +110,22 @@ namespace RecipesWpfApp.ViewModels
             }
         }
 
-        // The URL of the api of the images 
+        // כתובת URL של API של התמונות
         public string ApiImageUrl { get; }
 
-        // The view model of the current recipe
+        // VM של המתכון הנוכחי
         private SingleRecipeViewModel _singleRecipeViewModel;
 
+       // פקודת טעינת תמונות של מתכון
         public ICommand LoadImagesOfRecipeCommand { get; }
+        // פקודת הוספת תמונה למתכון
         public ICommand AddImageCommand { get; }
+        // פקודת הסרת תמונה ממתכון
         public ICommand RemoveImageCommand { get; }
 
+        // פקודת חיפוש תמונה למתכון
         public ICommand BrowseImageCommand { get; }
+        // פקודת העלאת תמונה חדשה של מתכון
         public ICommand UploadImageCommand { get; }
 
         public ImagesViewModel(SingleRecipeViewModel singleRecipeViewModel)

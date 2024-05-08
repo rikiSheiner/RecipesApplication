@@ -9,6 +9,10 @@ using RecipesWpfApp.Services;
 
 namespace RecipesWpfApp.ViewModels
 {
+    /// <summary>
+    /// מחלקה האחראית על הלוגיקה של תפריט הניווט
+    /// מכילה פקודות של ניווט לעמודים השונים של האתר
+    /// </summary>
     internal class NavigationBarViewModel : ViewModelBase
     {
         public ICommand NavigateHomeCommand { get; }
