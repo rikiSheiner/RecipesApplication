@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Commands.RecipeCommands
 {
+    // בסוף לא השתמשתי בזה 
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של דירוג מתכון
+    /// </summary>
     internal class RateRecipeCommand : CommandBase
     {
         private SingleRecipeViewModel _singleRecipeViewModel;

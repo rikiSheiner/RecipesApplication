@@ -11,6 +11,9 @@ using System.Windows;
 
 namespace RecipesWpfApp.Commands.RecipeCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של עדכון פרטי מתכון שמור
+    /// </summary>
     internal class UpdateRecipeDetailsCommand : AsyncCommandBase
     {
         private SingleRecipeViewModel _singleRecipeViewModel;
@@ -18,17 +21,21 @@ namespace RecipesWpfApp.Commands.RecipeCommands
         {
             _singleRecipeViewModel = singleRecipeViewModel;
         }
+        
+        // הפעולה המתבצעת בעת הרצת הפקודה של עדכון פרטי מתכון שמור
         public override async Task ExecuteAsync(object parameter)
         {
+            // שולחים בקשת HTTP לAPI של המתכונים ושומרים את פרטי המתכון העדכניים
             HttpClient client = new HttpClient();
-            string apiUrl = "https://localhost:7079/api/Recipe";
 
             var recipeDetails = _singleRecipeViewModel.RecipeDetails;
             int id = recipeDetails.Id;
+            
+            string apiUrl = $"https://localhost:7079/api/Recipe/{id}";
 
             string serializedRecipe = JsonConvert.SerializeObject(recipeDetails);
 
-            HttpResponseMessage saveResponse = await client.PutAsync(apiUrl + $"/{id}", new StringContent(serializedRecipe, Encoding.UTF8, "application/json"));
+            HttpResponseMessage saveResponse = await client.PutAsync(apiUrl, new StringContent(serializedRecipe, Encoding.UTF8, "application/json"));
 
             if (saveResponse.IsSuccessStatusCode)
             {

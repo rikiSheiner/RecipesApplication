@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Commands.JewishHolidayCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של בחירת מועד שבו הוכן המתכון 
+    /// </summary>
     internal class SelectJewishHolidayCommand : CommandBase
     {
         private JewishHolidayViewModel _viewModel;
@@ -21,6 +24,7 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
             _viewModel = jewishHolidayViewModel;
             _navigationService = navigationService;
         }
+
 
         public override void Execute(object parameter)
         {

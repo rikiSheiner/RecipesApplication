@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 
 namespace RecipesWpfApp.Commands.ImagesCommands
 {
+    /// <summary>
+    /// מחלקה המייצגת פקודה לבחירת תמונה מתוך רשימת התמונות השמורות במחשב 
+    /// </summary>
     internal class BrowseImageCommand : CommandBase
     {
         private ImagesViewModel _imagesViewModel;
@@ -21,6 +24,11 @@ namespace RecipesWpfApp.Commands.ImagesCommands
         {
             _imagesViewModel = imagesViewModel;
         }
+        
+        // פונקציה זו מתבצעת כאשר מריצים את הפקודה לחיפוש תמונה
+        // יוצגו למשתמש כל התמונות השמורות במחשב שלו
+        // והוא יכול לבחור מתוכן תמונה 
+        // והתמונה תישמר ברשימת התמונות של מתכון זה
         public override void Execute(object parameter)
         {
             var openFileDialog = new OpenFileDialog

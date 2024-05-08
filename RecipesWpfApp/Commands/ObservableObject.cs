@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Commands
 {
+    /// <summary>
+    /// מחלקה המייצגת אוביקט שניתן לתצפת עליו
+    /// זה אומר שכאשר מתרחש בו שינוי הוא מדווח לכל מי שצופה עליו
+    /// </summary>
     public class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

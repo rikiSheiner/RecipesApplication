@@ -12,6 +12,9 @@ using System.Collections.ObjectModel;
 
 namespace RecipesWpfApp.Commands.JewishHolidayCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של טעינת כל המועדים שבהם הוכן מתכון מסוים
+    /// </summary>
     internal class LoadHolidaysOfRecipeCommands : AsyncCommandBase
     {
         JewishHolidayViewModel _jewishHolidayViewModel;
@@ -20,15 +23,18 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
         {
             _jewishHolidayViewModel = jewishHolidayViewModel;
         }
+        
+        // הפעולה מהתבצעת בעת הרצת הפקודה לטעינת מועדי המתכון
         public override async Task ExecuteAsync(object parameter)
         {
             HttpClient client = new HttpClient();
 
-
-            HttpResponseMessage response = await client.GetAsync(_jewishHolidayViewModel.ApiHolidayUrl + $"?recipeId={_jewishHolidayViewModel.RecipeDetails.Id}");
+            // שליחת בקשת GET לAPI של המועדים עבור קבלת כל המועדים שבהם הוכן מתכון מסוים
+            HttpResponseMessage response = await client.GetAsync(_jewishHolidayViewModel.ApiHolidayUrl + $"/{_jewishHolidayViewModel.RecipeDetails.Id}");
 
             if (response.IsSuccessStatusCode)
             {
+                // מקבלים את רשימת המועדים מבסיס הנתונים ומעדכנים בהתאם את רשימת המועדים  
                 using (Stream stream = await response.Content.ReadAsStreamAsync())
                 using (StreamReader reader = new StreamReader(stream))
                 {

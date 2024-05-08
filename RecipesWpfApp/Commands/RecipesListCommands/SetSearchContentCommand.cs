@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Commands.RecipesListCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לאיפוס תוכן שאילתת החיפוש של מתכונים
+    /// זו מחלקה המשמשת לשני עמודים 
+    /// גם לעמוד של מתכונים שמורים וגם לעמוד של מתכונים לא שמורים
+    /// </summary>
     internal class SetSearchContentCommand : CommandBase
     {
         private RecipesBookViewModel _recipesBookViewModel;
@@ -21,6 +26,7 @@ namespace RecipesWpfApp.Commands.RecipesListCommands
         {
             _searchRecipeViewModel = searchRecipeViewModel;
         }
+
         public override void Execute(object parameter)
         {
             if(_recipesBookViewModel != null)

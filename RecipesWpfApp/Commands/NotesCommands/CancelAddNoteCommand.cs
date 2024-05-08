@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Commands.NotesCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה לביטול הוספת הערה למתכון
+    /// </summary>
     internal class CancelAddNoteCommand : CommandBase
     {
         private NotesViewModel _notesViewModel;
@@ -16,8 +19,11 @@ namespace RecipesWpfApp.Commands.NotesCommands
         {
             _notesViewModel = notesViewModel;
         }
+        
+        // הפעולה המתבצעת בעת ביטול הוספת מתכון
         public override void Execute(object parameter)
         {
+            // נעדכן את תצוגת הוספת הערה לבררת מחדל
             _notesViewModel.NoteToAdd = _notesViewModel.DefaultNoteText;
             _notesViewModel.IsInAdding = false;
         }

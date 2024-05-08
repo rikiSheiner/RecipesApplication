@@ -12,6 +12,9 @@ using System.Windows;
 
 namespace RecipesWpfApp.Commands.JewishHolidayCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של הוספת מועד למתכון
+    /// </summary>
     internal class AddJewishHolidayCommand : AsyncCommandBase
     {
         private JewishHolidayViewModel _jewishHolidayViewModel;
@@ -20,12 +23,12 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
             _jewishHolidayViewModel = jewishHolidayViewModel;
         }
 
-        
+        // הפעולה שמתבצעת עבור הוספת מועד למתכון
         public override async Task ExecuteAsync(object parameter)
         {
             if (_jewishHolidayViewModel.JewishHolidayToAdd != null)
             {
-                // Check if the holiday exists in the database
+                // בדיקה האם המועד הזה קיים בבסיס הנתונים
                 HttpClient client = new HttpClient();
                 string apiUrl = "https://localhost:7079/api/JewishHoliday";
 
@@ -39,12 +42,24 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
                     {
                         string json = reader.ReadToEnd();
                         savedHolidays = JsonConvert.DeserializeObject<List<JewishHoliday>>(json);
-                        if (savedHolidays.Contains(_jewishHolidayViewModel.JewishHolidayToAdd))
-                            found = true;
+                        for (int  i = 0;  i < savedHolidays.Count();  i++)
+                        {
+                            if (savedHolidays[i].Name == _jewishHolidayViewModel.JewishHolidayToAdd.Name)
+                            {
+                                found = true;
+                                /// עושים את ההשמה הזו בשביל להשתמש במזהה של המועד השמור 
+                                /// ולא במזהה חדש
+                                _jewishHolidayViewModel.JewishHolidayToAdd = savedHolidays[i];
+                                break; 
+                            }
+                        }
+                        //if (savedHolidays.Contains(_jewishHolidayViewModel.JewishHolidayToAdd))
+                        //  found = true;
                     }
                 }
 
-                // If not, save the holiday in the database
+
+                // אם המועד הזה לא שמור נשמור אותו ברשימת המועדים
                 if (!found)
                 {
                     string serializedHoliday = JsonConvert.SerializeObject(_jewishHolidayViewModel.JewishHolidayToAdd);
@@ -54,17 +69,26 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
 
                 }
 
-                // Save documentation of holiday when it is recommended to cook the recipe
+                // ולאחר מכן נוסיף את המועד לרשימת המועדים שבהם הוכן המתכון
                 RecipeInHoliday recipeInHoliday = new RecipeInHoliday(
                     _jewishHolidayViewModel.JewishHolidayToAdd.HolidayId,
                      _jewishHolidayViewModel.RecipeDetails.Id);
 
                 string serializedRecipeInHoliday = JsonConvert.SerializeObject(recipeInHoliday);
 
-                HttpResponseMessage saveRecipeInHolidayResponse = await client.PostAsync(apiUrl,
+                string recipeInHolidayURL = "https://localhost:7079/api/RecipeInHoliday";
+                HttpResponseMessage saveRecipeInHolidayResponse = await client.PostAsync(recipeInHolidayURL,
                      new StringContent(serializedRecipeInHoliday, Encoding.UTF8, "application/json"));
+                
+                // אם המועד שוייך למתכון בהצלחה
+                if (saveRecipeInHolidayResponse.IsSuccessStatusCode)
+                {
+                    // הוספת המועד לרשימת המועדים המוצגים במתכון זה
+                    _jewishHolidayViewModel.Holidays.Add(_jewishHolidayViewModel.JewishHolidayToAdd);
+                }
             }
 
+            // נשנה את המצב כי סיימנו להוסיף את המועד למתכון
             _jewishHolidayViewModel.IsInAddingHoliday = false;
         }
 

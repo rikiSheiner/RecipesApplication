@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Commands.RecipeCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של בחירת מתכון לא שמור
+    /// זה יגרום לניווט לעמוד המתכון המתאים
+    /// </summary>
     internal class SelectRecipeCommand : CommandBase
     {
         private SearchRecipeViewModel _viewModel;
@@ -23,7 +27,8 @@ namespace RecipesWpfApp.Commands.RecipeCommands
         }
 
 
-
+        // הפעולה המתבצעת בעת הרצת פקודת בחירת מתכון מרשימת המתכונים הלא שמורים
+        // יתבצע ניווט לעמוד מתכון יחיד עם פרטי מתכון זה
         public override void Execute(object parameter)
         {
             RecipeDetails recipeDetails = _viewModel.SelectedRecipeDetails;

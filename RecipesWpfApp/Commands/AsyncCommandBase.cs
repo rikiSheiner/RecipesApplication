@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Commands
 {
+    /// <summary>
+    /// מחלקה מופשטת המשמשת לייצוג מבנה כללי של מחלקת פקודה 
+    /// הרצה בצורה אסינכרונית
+    /// </summary>
     public abstract class AsyncCommandBase : CommandBase
     {
+        // האם הפקודה רצה כעת
         private bool _isExecuting;
         public bool IsExecuting
         {
@@ -22,11 +27,13 @@ namespace RecipesWpfApp.Commands
             }
         }
 
+        // האם הפקודה יכולה לרוץ
         public override bool CanExecute(object parameter)
         {
             return !IsExecuting && base.CanExecute(parameter);
         }
 
+        // הרצה של הפקודה
         public override async void Execute(object parameter)
         {
             IsExecuting = true;
@@ -42,6 +49,7 @@ namespace RecipesWpfApp.Commands
             }
         }
 
+        // הפעולה שמתבצעת בעת הרצת הפקודה האסינכרונית
         public abstract Task ExecuteAsync(object parameter);
     }
 }

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Commands.NotesCommands
 {
+    /// <summary>
+    /// בסוף לא השתמשתי בזה 
+    /// אני מאפשרת רק להוסיף הערה ולא למחוק אותה
+    /// </summary>
     internal class RemoveNoteCommand : AsyncCommandBase
     {
         private NotesViewModel _notesViewModel;

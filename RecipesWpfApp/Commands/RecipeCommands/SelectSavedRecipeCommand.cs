@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace RecipesWpfApp.Commands.RecipeCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת  לייצוג פקודה המתבצעת בעת בחירת 
+    /// מתכון מרשימת המתכונים השמורים
+    /// </summary>
     internal class SelectSavedRecipeCommand : CommandBase
     {
         private RecipesBookViewModel _viewModel;
@@ -23,7 +27,8 @@ namespace RecipesWpfApp.Commands.RecipeCommands
         }
 
 
-
+        // פעולה המתבצעת בעת הרצת הפקודה של בחירת מתכון שמור
+        // יתבצע ניווט לעמוד המתכון המתאים
         public override void Execute(object parameter)
         {
             RecipeDetails recipeDetails = _viewModel.SelectedRecipe;

@@ -11,6 +11,10 @@ using System.Windows;
 
 namespace RecipesWpfApp.Commands.ImagesCommands
 {
+
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של שמירת תמונה של מתכון בבסיס הנתונים
+    /// </summary>
     internal class UploadImageCommand : AsyncCommandBase
     {
         private ImagesViewModel _imagesViewModel;

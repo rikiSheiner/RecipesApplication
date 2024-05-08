@@ -12,6 +12,9 @@ using System.Windows;
 
 namespace RecipesWpfApp.Commands.JewishHolidayCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של טעינת כל המועדים שבהם הוכן מתכון מסויים
+    /// </summary>
     internal class LoadAllHolidaysCommand : AsyncCommandBase
     {
         private JewishHolidayViewModel _jewishHolidayViewModel;
@@ -20,14 +23,16 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
             _jewishHolidayViewModel = jewishHolidayViewModel;
         }
 
+        // הפעולה שמתבצעת בעת הרצת הפקודה לטעינת המועדים של מתכון מסוים
         public override async Task ExecuteAsync(object parameter)
         {
-            // Get all the jewish holidays from the web API
+            // קבלת כל המועדים השמורים בבסיס הנתונים ע"י הAPI
             HttpClient client = new HttpClient
             {
                 BaseAddress = new Uri("https://www.hebcal.com/holidays/")
             };
 
+            // שליחת בקשת HTTP לREST API של המועדים
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
@@ -41,7 +46,7 @@ namespace RecipesWpfApp.Commands.JewishHolidayCommands
 
                 dynamic jsonObject = JsonConvert.DeserializeObject(responseContent);
 
-                // Save all the holidays in the view model
+                // שמירת כל המועדים הקיימים באוביקט המתאים
                 _jewishHolidayViewModel.AllHolidays = new ObservableCollection<JewishHoliday>();
 
                 foreach (var item in jsonObject["items"])

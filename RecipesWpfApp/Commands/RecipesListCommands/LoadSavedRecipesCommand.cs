@@ -12,6 +12,9 @@ using System.Windows;
 
 namespace RecipesWpfApp.Commands.RecipesListCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של טעינת המתכונים השמורים 
+    /// </summary>
     internal class LoadSavedRecipesCommand : AsyncCommandBase
     {
         private RecipesBookViewModel _bookViewModel;
@@ -20,15 +23,20 @@ namespace RecipesWpfApp.Commands.RecipesListCommands
             _bookViewModel = recipesBookViewModel;
         }
 
+        // הפעולה המתבצעת בעת הרצת הפעולה של טעינת מתכונים שמורים
         public override async Task ExecuteAsync(object parameter)
         {
+            // שליחת בקשת HTTP לAPI על מנת לקבל את כל המתכונים שנשמרו
             HttpClient client = new HttpClient();
             var URL_TO_ASP_API_ENDPOINT = "https://localhost:7079/api/Recipe";
 
 
             try
             {
+                // מעדכנים במחלקה המייצגת לוגיקה של מתכונים שמורים שאנו באמצע טעינת מתכונים
                 _bookViewModel.IsLoading = true;
+                
+                // שולחים בקשת HTTP לAPI של המתכונים על מנת לקבל את כל המתכונים שנשמרו
                 HttpResponseMessage response = await client.GetAsync(URL_TO_ASP_API_ENDPOINT);
 
                 if (response.IsSuccessStatusCode)

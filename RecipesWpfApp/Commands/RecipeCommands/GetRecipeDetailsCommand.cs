@@ -13,6 +13,9 @@ using System.Windows.Input;
 
 namespace RecipesWpfApp.Commands.RecipeCommands
 {
+    /// <summary>
+    /// מחלקה המשמשת לייצוג פקודה של קבלת פרטי מתכון מסוים
+    /// </summary>
     internal class GetRecipeDetailsCommand : AsyncCommandBase
     {
         public NavigationBarViewModel NavigationBarViewModel { get; }
@@ -23,7 +26,16 @@ namespace RecipesWpfApp.Commands.RecipeCommands
 
         private const string BASE_URL_REST_API = "https://tasty.p.rapidapi.com/";
         private const string MORE_INFO_ENDPOINT = "recipes/get-more-info?id={0}";
-        private const string API_KEY = "988b7634ecmsh14462af722fa434p138e04jsn2cb3a07a28a8";
+        
+        /*בזה השתמשתי עד שניצלתי עד תום את הגרסה החינמית
+        * API KEY of r0587860843@gmail.com account
+        * private const string API_KEY = "988b7634ecmsh14462af722fa434p138e04jsn2cb3a07a28a8";
+        */
+
+        // ולכן החלפתי חשבון
+        // API KEY of rsheiner@g.jct.ac.il account
+        private const string API_KEY = "c056d8e245msh1dbf79f218783a1p17409bjsna5612c62ffa4";
+
         private const string API_HOST = "tasty.p.rapidapi.com";
         private const string API_BASE_URL = "https://localhost:7079/api";
 
@@ -41,11 +53,15 @@ namespace RecipesWpfApp.Commands.RecipeCommands
 
             new SelectRecipeCommand(_searchRecipeViewModel, navigationService);
         }
+        
+        // הפקודה המתבצעת בע הרצת הפקודה לקבלת פרטי מתכון מסוים
         public override async Task ExecuteAsync(object parameter)
         {
+
             RecipeDetails recipeDetails;
             int recipeId = _searchRecipeViewModel.SelectedRecipe.Id;
 
+            // שליחת בקשת HTTP לAPI על מנת לקבל את הפרטים של המתכון הנבחר
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
@@ -59,6 +75,9 @@ namespace RecipesWpfApp.Commands.RecipeCommands
             };
             using (var response = await client.SendAsync(request))
             {
+                // משתמשים בתגובה שהתקבלה המכילה את כל פרטי המתכון
+                // ויוצרים ממנה אוביקט של מתכון המכיל את כל הפרטים
+
                 response.EnsureSuccessStatusCode();
                 string responseContent = await response.Content.ReadAsStringAsync();
 
@@ -70,6 +89,7 @@ namespace RecipesWpfApp.Commands.RecipeCommands
                 int position = 0;
                 string display_text;
 
+                // מוסיפים את כל הרכיבים של המתכון
                 foreach (var item in jsonObject["sections"][0]["components"])
                 {
                     rawText = item["raw_text"].ToString();
@@ -83,6 +103,7 @@ namespace RecipesWpfApp.Commands.RecipeCommands
 
                 position = 0;
                 recipeDetails.Instructions = new List<Instruction>();
+                // מוסיפים את כל ההוראות של המתכון
                 foreach (var item in jsonObject["instructions"])
                 {
                     display_text = item["display_text"].ToString();
@@ -99,7 +120,7 @@ namespace RecipesWpfApp.Commands.RecipeCommands
 
             _searchRecipeViewModel.SelectedRecipeDetails = recipeDetails;
 
-
+            // מנווטים אל עמוד של מתכון יחיד המכיל את פרטי המתכון הנבחר
             ParameterNavigationService<RecipeDetails, SingleRecipeViewModel> navigationService =
                 new ParameterNavigationService<RecipeDetails, SingleRecipeViewModel>(_navigationStore,
                 (p) => new SingleRecipeViewModel( NavigationBarViewModel, p, false, _navigationStore));
